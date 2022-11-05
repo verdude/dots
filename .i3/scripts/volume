@@ -1,0 +1,13 @@
+#!/bin/sh
+
+master=$(amixer sget Master -M | sed -n 5p | awk '{print $4}' | sed 's/\[\|\]//g')
+pulse=$(pamixer --get-volume)
+muted=$(pamixer --get-mute | sed 's/false//;s/true/MUTED/')
+
+if [ -n "$master" ] && [ -n "$pulse" ]; then
+    master=$master" - "
+fi
+
+echo " $master$pulse% $muted"
+echo " Master Volume: $master Pulse Sink Volume: $pulse% $muted"
+

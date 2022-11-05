@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -n $(which acpi 2>/dev/null) ]; then
+    percent=$(acpi -i | head -3 | tail -1 | awk '{print $4}' | tr -d ',')
+    echo "$percent"
+    echo "$percent"
+    if [ $(echo $percent | tr -d '%') -lt 40 ]; then
+        echo "#FF0000"
+    elif [ $(echo $percent | tr -d '%') -lt 60 ]; then
+        echo "#00FFFF"
+    else
+        echo "#00FF00"
+    fi
+fi
+
