@@ -75,6 +75,9 @@ elif [ -f "Cargo.toml" ]; then
 
 elif [ -f "Gemfile" ]; then
   srbenv
+
+elif [ -f "package.json" ]; then
+  snvm
 fi
 
 brootlauncher=/home/erra/.config/broot/launcher/bash/br

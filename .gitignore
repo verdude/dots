@@ -32,3 +32,4 @@ yarn-error.log*
 .mutt/
 .bingrc
 *.gz
+.fonts/.uuid
