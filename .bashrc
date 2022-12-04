@@ -43,8 +43,12 @@ mkdir -p /tmp/.undo
 
 # NVM LMAO! SUPER SLOW!
 function snvm() {
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvmdirs=("$HOME/.nvm" "$HOMEBREW_PREFIX/opt/nvm")
+  for dir in ${nvmdirs[@]}; do
+    if [ -s "$dir/nvm.sh" ]; then
+      . "$dir/nvm.sh"
+    fi
+  done
 }
 
 function spyenv() {
@@ -67,6 +71,10 @@ function srbenv() {
   which rbenv &>/dev/null && eval "$(rbenv init -)"
 }
 
+function sbrew() {
+  eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+}
+
 if [ -f "pyproject.toml" ] || [ -f "Pipfile" ]; then
   spyenv
 
@@ -80,7 +88,14 @@ elif [ -f "package.json" ]; then
   snvm
 fi
 
-brootlauncher=/home/erra/.config/broot/launcher/bash/br
-if [ -f $brootlauncher ]; then
-  . $brootlauncher
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sbrew
 fi
+
+brootlauncherpaths=(/home/erra/.config/broot/launcher/bash/br /Users/erra/.config/broot/launcher/bash/br)
+for path in ${brootlauncherpaths[@]}; do
+  if [ -f $path ]; then
+    . $path
+    break
+  fi
+done
