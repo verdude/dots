@@ -106,7 +106,6 @@ set linebreak
 set ff=unix
 
 if !has('macunix')
-  echo heehee
   set clipboard=unnamedplus
 endif
 
