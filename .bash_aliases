@@ -67,7 +67,7 @@ alias cpd='clip_daemon'
 
 # editing stuff
 alias mrn='mkdir -p $HOME/bits && vim $HOME/bits/notes.txt'
-alias ecv='vim $(git diff --name-only --diff-filter=U)'
+alias ecv='vim $(git diff --name-only --diff-filter=M)'
 alias creb='git rebase --continue'
 alias s='git status'
 alias d='git diff'
