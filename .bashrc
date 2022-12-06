@@ -1,15 +1,19 @@
-if [ -f /etc/bashrc ]; then
+if [ -s /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
 export GITDIR="${GITDIR:-$HOME/git}"
 
-if [ -f $HOME/.secrets.sh ]; then
-    . $HOME/.secrets.sh
+if [[ -s "$HOME/.alt" ]]; then
+  source "$HOME/.alt"
 fi
 
-if [ -f $HOME/.bash_aliases ]; then
-    . $HOME/.bash_aliases
+if [ -s "$HOME/.secrets.sh" ]; then
+    . "$HOME/.secrets.sh"
+fi
+
+if [ -s "$HOME/.bash_aliases" ]; then
+    . "$HOME/.bash_aliases"
 fi
 
 if [ -x /usr/bin/dircolors ]; then
@@ -24,9 +28,9 @@ setxkbmap -option ctrl:nocaps 2>/dev/null
 
 export EDITOR=vim
 
-export DOTDIR=$GITDIR/dots
-export PATH="$PATH:$HOME/.go/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
+export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
+export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 export LS_COLORS='ow=01;36;40'
 
 [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]] && eval $(keychain --agents ssh --eval id_ed25519 2>/dev/null)
@@ -34,7 +38,7 @@ export LS_COLORS='ow=01;36;40'
 export HISTFILESIZE=
 export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
-export HISTFILE=$HOME/.bash_eternal_history
+export HISTFILE="$HOME/.bash_eternal_history"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 ## VIm
@@ -44,6 +48,7 @@ mkdir -p /tmp/.undo
 # NVM LMAO! SUPER SLOW!
 function snvm() {
   nvmdirs=("$HOME/.nvm" "$HOMEBREW_PREFIX/opt/nvm")
+  # breaks with name in home/homebrew path
   for dir in ${nvmdirs[@]}; do
     if [ -s "$dir/nvm.sh" ]; then
       . "$dir/nvm.sh"
@@ -61,8 +66,8 @@ function spyenv() {
 
 function scargo() {
   local cargoenv="$HOME/.cargo/env"
-  if [[ -f $cargoenv ]]; then
-    . $cargoenv
+  if [[ -s "$cargoenv" ]]; then
+    . "$cargoenv"
     export PATH="$HOME/.cargo/bin:$PATH"
   fi
 }
@@ -79,23 +84,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   sbrew
 fi
 
-if [ -f "pyproject.toml" ] || [ -f "Pipfile" ]; then
+if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
   spyenv
 
-elif [ -f "Cargo.toml" ]; then
+elif [ -s "Cargo.toml" ]; then
   scargo
 
-elif [ -f "Gemfile" ]; then
+elif [ -s "Gemfile" ]; then
   srbenv
 
-elif [ -f "package.json" ]; then
+elif [ -s "package.json" ]; then
   snvm
 fi
 
-brootlauncherpaths=(/home/erra/.config/broot/launcher/bash/br /Users/erra/.config/broot/launcher/bash/br)
-for path in ${brootlauncherpaths[@]}; do
-  if [ -f $path ]; then
-    . $path
-    break
-  fi
-done
+brootlauncherpaths=($HOME/.config/broot/launcher/bash/br)
+if [ -s "$path" ]; then
+  . "$path"
+  break
+fi
