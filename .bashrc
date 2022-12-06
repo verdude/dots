@@ -72,8 +72,12 @@ function srbenv() {
 }
 
 function sbrew() {
-  eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sbrew
+fi
 
 if [ -f "pyproject.toml" ] || [ -f "Pipfile" ]; then
   spyenv
@@ -86,10 +90,6 @@ elif [ -f "Gemfile" ]; then
 
 elif [ -f "package.json" ]; then
   snvm
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  sbrew
 fi
 
 brootlauncherpaths=(/home/erra/.config/broot/launcher/bash/br /Users/erra/.config/broot/launcher/bash/br)

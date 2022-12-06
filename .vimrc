@@ -104,7 +104,12 @@ set cursorline
 set wrap
 set linebreak
 set ff=unix
-set clipboard=unnamedplus
+
+if !has('macunix')
+  echo heehee
+  set clipboard=unnamedplus
+endif
+
 "Automatic, but try z= for auto fix
 "set spell spelllang=en_us
 
