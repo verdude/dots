@@ -97,8 +97,7 @@ elif [ -s "package.json" ]; then
   snvm
 fi
 
-brootlauncherpaths=($HOME/.config/broot/launcher/bash/br)
-if [ -s "$path" ]; then
-  . "$path"
-  break
+brootlauncherpath=$HOME/.config/broot/launcher/bash/br
+if [ -f "$brootlauncherpath" ]; then
+  . "$brootlauncherpath"
 fi
