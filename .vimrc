@@ -1,7 +1,10 @@
 set nocompatible
-filetype off
+autocmd FileType python setlocal ts=4 sw=4 sts=4
+filetype plugin indent on
+
 set rtp+=~/.vim/bundle/Vundle.vim
 runtime macros/matchit.vim
+
 call vundle#begin()
 "Package Manager
     Plugin 'VundleVim/Vundle.vim'
@@ -25,15 +28,12 @@ call vundle#begin()
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
 "Colors
-    "Plugin 'arcticicestudio/nord-vim'
     Plugin 'w0ng/vim-hybrid'
 "Tmux
     "Plugin 'christoomey/vim-tmux-navigator'
 "Latex
     Plugin 'gerw/vim-latex-suite'
 call vundle#end()
-
-filetype plugin indent on
 "Airline
 set t_Co=256
 set laststatus=2
@@ -62,8 +62,6 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 nnoremap <leader>llf <Plug>IMAP_JumpForward
 vnoremap <leader>llf <Plug>IMAP_JumpForward
 inoremap <leader>llf <Plug>IMAP_JumpForward
-"Python-Mode - Python debugging, highlighting, completion and more; <leader>r, <c-c>ro for imports,
-set nofoldenable
 
 "Non-Plugins
 "autocmd InsertEnter * set norelativenumber
@@ -71,6 +69,7 @@ set nofoldenable
 
 let mapleader = ','
 
+set nofoldenable
 set relativenumber
 set number
 set directory=/tmp//,.//
@@ -78,16 +77,10 @@ set undodir=/tmp/.undo//,/tmp//,.//
 set undofile
 set backupdir=/tmp/.backup//,/tmp//,.//
 set backup
-set autoindent
 set autowrite
 set pastetoggle=<F2>
 set ignorecase
 set smartcase
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set smarttab
 set gdefault
 set incsearch
 set showmatch
@@ -104,6 +97,13 @@ set cursorline
 set wrap
 set linebreak
 set ff=unix
+
+set autoindent
+set expandtab
+set smarttab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
 if !has('macunix')
   set clipboard=unnamedplus
