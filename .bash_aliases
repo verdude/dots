@@ -59,14 +59,12 @@ alias aur='mkdir -p ~/aur && pushd ~/aur'
 alias goh='pushd $(go env GOPATH)/src/github.com'
 alias dfs='pushd $GITDIR/dots'
 alias scripts='pushd $GITDIR/random/thechosenones'
-alias groot='pushd $(git rev-parse --show-toplevel)'
-alias g=". g"
+alias gr='pushd $(git rev-parse --show-toplevel)'
 
 # clip daemon
 alias cpd='clip_daemon'
 
 # editing stuff
-alias mrn='mkdir -p $HOME/bits && vim $HOME/bits/notes.txt'
 alias ecv='vim $(git diff --name-only --diff-filter=M)'
 alias creb='git rebase --continue'
 alias s='git status'
@@ -90,6 +88,3 @@ alias vdim="vim"
 alias bvinm="vim"
 alias vipm="vim"
 alias vvim="vim"
-
-# emacs
-alias enw="emacs -nw"
