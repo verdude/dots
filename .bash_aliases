@@ -69,7 +69,8 @@ alias ecv='vim $(git diff --name-only --diff-filter=M)'
 alias creb='git rebase --continue'
 alias s='git status'
 alias d='git diff'
-alias l='git slog'
+alias sl='git slog'
+alias l='git slog -10'
 
 # vim
 alias vi="vim"

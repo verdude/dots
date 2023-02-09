@@ -86,10 +86,10 @@ set incsearch
 set showmatch
 set showcmd
 set hlsearch
-set textwidth=120
+set textwidth=100
 set wrapmargin=2
 set formatoptions=qrn1
-set colorcolumn=120
+set colorcolumn=100
 set scrolloff=1
 set splitright
 set splitbelow
@@ -120,7 +120,8 @@ inoremap kj <esc>
 nnoremap / /\v
 nnoremap <leader>/ /
 nnoremap <leader>m :Goyo<cr>
-nnoremap <leader>n :Goyo 150<cr> :set number relativenumber<cr>
+nnoremap <leader>b :Goyo 80<cr>
+nnoremap <leader>n :Goyo 100<cr> :set number relativenumber<cr>
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
