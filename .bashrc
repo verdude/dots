@@ -17,10 +17,10 @@ if [ -s "$HOME/.bash_aliases" ]; then
 fi
 
 if [ -x /usr/bin/dircolors ]; then
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 set -o vi
@@ -33,7 +33,9 @@ export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 export LS_COLORS='ow=01;36;40'
 
-[[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]] && eval $(keychain --agents ssh --eval id_ed25519 2>/dev/null)
+if [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]]; then
+  eval $(keychain --agents ssh --eval id_ed25519 2>/dev/null)
+fi
 
 export HISTFILESIZE=
 export HISTSIZE=
