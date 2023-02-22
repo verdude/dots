@@ -2,38 +2,42 @@ set nocompatible
 autocmd FileType python setlocal ts=4 sw=4 sts=4
 filetype plugin indent on
 
-set rtp+=~/.vim/bundle/Vundle.vim
 runtime macros/matchit.vim
 
-call vundle#begin()
-"Package Manager
-    Plugin 'VundleVim/Vundle.vim'
+let data_dir = '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
 "Comments, Alignment, Sorting
-    Plugin 'godlygeek/tabular'
-    Plugin 'michaeljsmith/vim-indent-object'
+    Plug 'godlygeek/tabular'
+    Plug 'michaeljsmith/vim-indent-object'
 "Open/Close Symbols
-    Plugin 'tpope/vim-surround'
-    Plugin 'Raimondi/delimitMate'
+    Plug 'tpope/vim-surround'
+    Plug 'Raimondi/delimitMate'
 "Searching
-    Plugin 'ctrlpvim/ctrlp.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
 "Distraction Free mode
-    Plugin 'junegunn/goyo.vim'
+    Plug 'junegunn/goyo.vim'
 "Syntax Highlighting
-    Plugin 'derekwyatt/vim-scala'
-    Plugin 'elixir-editors/vim-elixir'
-    Plugin 'JuliaEditorSupport/julia-vim'
-    Plugin 'hashivim/vim-terraform'
-    Plugin 'leafOfTree/vim-vue-plugin'
+    Plug 'derekwyatt/vim-scala'
+    Plug 'elixir-editors/vim-elixir'
+    Plug 'JuliaEditorSupport/julia-vim'
+    Plug 'hashivim/vim-terraform'
+    Plug 'leafOfTree/vim-vue-plugin'
 "HUD
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 "Colors
-    Plugin 'w0ng/vim-hybrid'
+    Plug 'w0ng/vim-hybrid'
 "Tmux
     "Plugin 'christoomey/vim-tmux-navigator'
 "Latex
-    Plugin 'gerw/vim-latex-suite'
-call vundle#end()
+    Plug 'gerw/vim-latex-suite'
+call plug#end()
+
 "Airline
 set t_Co=256
 set laststatus=2

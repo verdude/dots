@@ -1,5 +1,5 @@
 if [ -s /etc/bashrc ]; then
-    . /etc/bashrc
+    source /etc/bashrc
 fi
 
 export GITDIR="${GITDIR:-$HOME/git}"
@@ -9,11 +9,11 @@ if [[ -s "$HOME/.alt" ]]; then
 fi
 
 if [ -s "$HOME/.secrets.sh" ]; then
-    . "$HOME/.secrets.sh"
+    source "$HOME/.secrets.sh"
 fi
 
 if [ -s "$HOME/.bash_aliases" ]; then
-    . "$HOME/.bash_aliases"
+    source "$HOME/.bash_aliases"
 fi
 
 if [ -x /usr/bin/dircolors ]; then
@@ -53,7 +53,7 @@ function snvm() {
   # breaks with name in home/homebrew path
   for dir in ${nvmdirs[@]}; do
     if [ -s "$dir/nvm.sh" ]; then
-      . "$dir/nvm.sh"
+      source "$dir/nvm.sh"
     fi
   done
 }
@@ -69,7 +69,7 @@ function spyenv() {
 function scargo() {
   local cargoenv="$HOME/.cargo/env"
   if [[ -s "$cargoenv" ]]; then
-    . "$cargoenv"
+    source "$cargoenv"
     export PATH="$HOME/.cargo/bin:$PATH"
   fi
 }
@@ -101,5 +101,5 @@ fi
 
 brootlauncherpath=$HOME/.config/broot/launcher/bash/br
 if [ -f "$brootlauncherpath" ]; then
-  . "$brootlauncherpath"
+  source "$brootlauncherpath"
 fi
