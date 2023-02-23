@@ -6,26 +6,6 @@ import os
 import sys
 import errno
 
-class bcolors:
-    cols = {
-        "HEADER": '\033[95m',
-        "BLUE": '\033[94m',
-        "GREEN": '\033[92m',
-        "WARNING": '\033[93m',
-        "FAIL": '\033[91m',
-        "ENDC": '\033[0m',
-        "BOLD": '\033[1m',
-        "UNDERLINE": '\033[4m'
-    }
-
-    @staticmethod
-    def color(s, c="BLUE", b=False, u=False):
-        decorators = bcolors.cols[c]
-        if b:
-            decorators += bcolors.cols["BOLD"]
-        if u:
-            decorators += bcolors.cols["UNDERLINE"]
-        return "%s%s%s" % (decorators,s,bcolors.cols["ENDC"])
 
 def parse_options():
     parser = argparse.ArgumentParser(prog="dotlinker", description="Create and remove symbolic links to dotfiles. Default behavior is to create symbolic links.", add_help=True)
@@ -36,6 +16,7 @@ def parse_options():
     parser.add_argument("-k", "--kill", action="store_true", help="exit if an error occurs")
     return parser.parse_args()
 
+
 def setup_logging(args):
     if args.quiet:
         lg_level = logging.WARN
@@ -44,6 +25,7 @@ def setup_logging(args):
     else:
         lg_level = logging.INFO
     logging.basicConfig(level=lg_level)
+
 
 def main():
     args = parse_options()
@@ -78,7 +60,9 @@ def main():
                     if args.kill:
                         sys.exit()
 
-try:
-    main()
-except KeyboardInterrupt:
-    print("\n" + bcolors.color("Caught Keyboard Interrupt. Exiting.", "WARNING", b=True))
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nCaught Keyboard Interrupt. Exiting.")

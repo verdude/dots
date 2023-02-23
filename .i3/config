@@ -37,15 +37,6 @@ bindsym $mod+Shift+BackSpace    exec reboot
 
 bindsym $mod+Tab        workspace back_and_forth
 
-# bindsym $mod+grave
-# bindsym $mod+asciitilde
-
-# bindsym $mod+XF86Back
-# bindsym $mod+Shift+XF86Back
-
-# bindsym $mod+XF86Forward
-# bindsym $mod+Shift+XF86Forward
-
 # Letter Keys
 
 bindsym $mod+q        kill
@@ -102,30 +93,12 @@ bindsym $mod+Shift+c    reload
 
 # Function Buttons
 bindsym F1        exec --no-startup-id echo "help" > /dev/null
-# bindsym F2
-# bindsym F3
-# bindsym F4
-# bindsym F5
-# bindsym F6
-# bindsym F7
-# bindsym F8
-# bindsym F9
-# bindsym F10
 bindsym F11        fullscreen toggle
-# bindsym F12
 
-# bindsym $mod+F1
-# bindsym $mod+F2
 bindsym $mod+F3        exec arandr
-# bindsym $mod+F4        exec sudo systemctl suspend
 bindsym $mod+F5        exec sudo systemctl restart NetworkManager
-# bindsym $mod+F6
-# bindsym $mod+F7
-# bindsym $mod+F8
 bindsym $mod+F9        exec --no-startup-id sudo bash ~/.config/i3/mount.sh
 bindsym $mod+F10    exec --no-startup-id sudo bash ~/.config/i3/unmount.sh
-# bindsym $mod+F11
-# bindsym $mod+F12
 
 # Arrow Keys
 bindsym $mod+Left    focus left
@@ -139,16 +112,16 @@ bindsym $mod+Shift+Right move right
 
 # Workspaces
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8: "
-set $ws9 "9: "
-set $ws10 "10: "
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1        workspace $ws1
@@ -201,14 +174,11 @@ bindsym $mod+i exec --no-startup-id pamixer -i 2
 # mute with pulse
 bindsym $mod+m exec --no-startup-id pamixer -t
 
-# vpn
-bindsym $mod+Shift+v exec --no-startup-id /home/erra/bin/restartvpn
-
 # media
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # bindsym XF86MonBrightnessUp exec --no-startup-id /home/erra/bin/undim
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/erra/bin/undim
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/erra/bin/dim
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo undim
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo dim
