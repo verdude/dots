@@ -1,5 +1,6 @@
 alias :q="exit"
 alias upds="$GITDIR/random/add_scripts.sh --yes"
+alias clsl="find $HOME/bin -xtype l -print -exec rm {} +"
 alias tmux="TERM=screen-256color tmux"
 alias c='xclip'
 alias cb='xclip -sel clip'
