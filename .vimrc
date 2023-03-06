@@ -28,6 +28,7 @@ call plug#begin()
     Plug 'hashivim/vim-terraform'
     Plug 'leafOfTree/vim-vue-plugin'
     Plug 'rust-lang/rust.vim'
+    Plug 'vito-c/jq.vim'
 "HUD
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
