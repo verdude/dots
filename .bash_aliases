@@ -32,6 +32,10 @@ alias startxkde='echo exec startplasma-x11 > ~/.xinitrc && startx'
 alias startxi3='echo exec i3 > ~/.xinitrc && startx'
 alias startxawe='echo exec awesome > ~/.xinitrc && startx'
 
+# python
+alias venv='python -m venv env && . env/bin/activate'
+alias dea='deactivate'
+
 # docker
 alias img='docker images'
 alias cont='docker ps -a'

@@ -128,6 +128,8 @@ nnoremap <leader>/ /
 nnoremap <leader>m :Goyo<cr>
 nnoremap <leader>b :Goyo 80<cr>
 nnoremap <leader>n :Goyo 100<cr> :set number relativenumber<cr>
+nnoremap <leader>k :Goyo 150<cr> :set number relativenumber<cr>
+nnoremap <leader>j :Goyo 200<cr> :set number relativenumber<cr>
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
