@@ -182,3 +182,4 @@ bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86MonBrightnessUp exec --no-startup-id /home/erra/bin/undim
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo undim
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo dim
+exec --no-startup-id setxkbmap -layout something -variant something -option ctrl:nocaps

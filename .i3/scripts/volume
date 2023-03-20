@@ -10,4 +10,3 @@ fi
 
 echo " $master$pulse% $muted"
 echo " Master Volume: $master Pulse Sink Volume: $pulse% $muted"
-
