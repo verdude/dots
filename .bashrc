@@ -1,5 +1,9 @@
 if [ -s /etc/bashrc ]; then
-    source /etc/bashrc
+  . /etc/bashrc
+fi
+
+if [ -s /etc/bash.bashrc ]; then
+  . /etc/bash.bashrc
 fi
 
 export GITDIR="${GITDIR:-$HOME/git}"
@@ -9,11 +13,11 @@ if [[ -s "$HOME/.alt" ]]; then
 fi
 
 if [ -s "$HOME/.secrets.sh" ]; then
-    source "$HOME/.secrets.sh"
+  . "$HOME/.secrets.sh"
 fi
 
 if [ -s "$HOME/.bash_aliases" ]; then
-    source "$HOME/.bash_aliases"
+  . "$HOME/.bash_aliases"
 fi
 
 if [ -x /usr/bin/dircolors ]; then
@@ -24,7 +28,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 set -o vi
-setxkbmap -option ctrl:nocaps 2>/dev/null
+setxkbmap -option ctrl:nocaps 2> /dev/null
 
 export EDITOR=vim
 
@@ -34,7 +38,7 @@ export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 export LS_COLORS='ow=01;36;40'
 
 if [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]]; then
-  eval $(keychain --agents ssh --eval id_ed25519 2>/dev/null)
+  eval $(keychain --agents ssh --eval id_ed25519 2> /dev/null)
 fi
 
 export HISTFILESIZE=
@@ -53,36 +57,36 @@ function snvm() {
   # breaks with name in home/homebrew path
   for dir in ${nvmdirs[@]}; do
     if [ -s "$dir/nvm.sh" ]; then
-      source "$dir/nvm.sh"
+      . "$dir/nvm.sh"
     fi
   done
 }
 
 function spyenv() {
   export PYENV_ROOT="$HOME/.pyenv"
-  if [[ -d "$PYENV_ROOT" ]]; then
-    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  if [[ -d $PYENV_ROOT ]]; then
+    command -v pyenv > /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
   fi
 }
 
 function scargo() {
   local cargoenv="$HOME/.cargo/env"
-  if [[ -s "$cargoenv" ]]; then
-    source "$cargoenv"
+  if [[ -s $cargoenv ]]; then
+    . "$cargoenv"
     export PATH="$HOME/.cargo/bin:$PATH"
   fi
 }
 
 function srbenv() {
-  which rbenv &>/dev/null && eval "$(rbenv init -)"
+  which rbenv &> /dev/null && eval "$(rbenv init -)"
 }
 
 function sbrew() {
   eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ $OSTYPE == "darwin"* ]]; then
   sbrew
 fi
 
@@ -100,6 +104,11 @@ elif [ -s "package.json" ]; then
 fi
 
 brootlauncherpath=$HOME/.config/broot/launcher/bash/br
-if [ -f "$brootlauncherpath" ]; then
-  source "$brootlauncherpath"
+if [ -s "$brootlauncherpath" ]; then
+  . "$brootlauncherpath"
+fi
+
+fzfbindings=/usr/share/fzf/key-bindings.bash
+if [ -s "$fzfbindings" ]; then
+  . "$fzfbindings"
 fi
