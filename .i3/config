@@ -1,7 +1,7 @@
 # Needed for i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 1
-gaps inner 0
+gaps inner 10
 gaps outer 0
 
 # Basic settings
@@ -15,103 +15,61 @@ set $browser firefox
 font pango:System San Francisco Display 10
 # exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --bg-tile ~/.i3/wall.png
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-bar {
-    tray_output none
-    font pango:System San Francisco Display 10, Awesome 8
-    status_command i3blocks -c ~/.i3/i3blocks.conf
-    position top
-}
-
-bindsym $mod+Return         exec $term
-bindsym $mod+Shift+Return     exec $term -e tmux
-
-bindsym $mod+Shift+space     floating toggle
-bindsym $mod+space        focus mode_toggle
-
-bindsym $mod+Escape        exec --no-startup-id xset -display :0.0 dpms force off
-bindsym $mod+Shift+Escape     exec i3-msg exit
-
-bindsym $mod+BackSpace exec emacs
-bindsym $mod+Shift+BackSpace    exec reboot
-
-bindsym $mod+Tab        workspace back_and_forth
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term -e tmux
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Escape exec --no-startup-id xset -display :0.0 dpms force off
+bindsym $mod+Shift+Escape exec i3-msg exit
+bindsym $mod+Shift+BackSpace exec reboot
+bindsym $mod+Tab workspace back_and_forth
 
 # Letter Keys
+bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+bindsym $mod+w exec qutebrowser
+bindsym $mod+r exec $term -e ranger
+bindsym $mod+Shift+r restart
+bindsym $mod+t split toggle
 
-bindsym $mod+q        kill
-bindsym $mod+Shift+q    kill
+# gaps
+bindsym $mod+Shift+t gaps inner all set 10; gaps outer all set 0
+bindsym $mod+Shift+y resize shrink width 10 px or 10ppt
+bindsym $mod+Shift+o resize grow width 10 px or 10ppt
+bindsym $mod+Shift+u resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
+bindsym $mod+s gaps inner current plus 5
+bindsym $mod+Shift+s gaps inner current minus 5
+bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
 
-bindsym $mod+w        exec qutebrowser
-bindsym $mod+Shift+w    exec --no-startup-id $browser; workspace $ws2
+bindsym $mod+f fullscreen toggle
+bindsym $mod+d exec rofi -show run -lines 5 -opacity "85" -width 25 -font "System San Francisco Display 9"
 
-bindsym $mod+r         exec $term -e ranger
-bindsym $mod+Shift+r    restart
-
-bindsym $mod+t        split toggle
-bindsym $mod+Shift+t    gaps inner all set 10; gaps outer all set 0
-
-# bindsym $mod+y        exec
-bindsym $mod+Shift+y    resize shrink width 10 px or 10ppt
-bindsym $mod+Shift+o    resize grow width 10 px or 10ppt
-
-# bindsym $mod+u
-bindsym $mod+Shift+u    resize shrink height 10 px or 10 ppt
-
-# bindsym $mod+i         exec $term -e htop
-bindsym $mod+Shift+i    resize grow height 10 px or 10 ppt
-
-bindsym $mod+s        gaps inner current plus 5
-bindsym $mod+Shift+s    gaps inner current minus 5
-
-bindsym $mod+d        exec rofi -show run -lines 5 -opacity "85" -width 25 -font "System San Francisco Display 9"
-bindsym $mod+Shift+d    gaps inner all set 0; gaps outer all set 0
-
-bindsym $mod+f        fullscreen toggle
-# bindsym $mod+Shift+f    exec thunar
-
-bindsym $mod+h        focus left
-bindsym $mod+Shift+h    move left 30
-
-bindsym $mod+j        focus down
-bindsym $mod+Shift+j    move down 30
-
-bindsym $mod+k        focus up
-bindsym $mod+Shift+k    move up 30
-
-bindsym $mod+l        focus right
-bindsym $mod+Shift+l    move right 30
-
-bindsym $mod+z        gaps outer current plus 5
-bindsym $mod+Shift+z    gaps outer current minus 5
-
-bindsym $mod+x        exec /home/erra/bin/lock
-bindsym $mod+Shift+x    exec shutdown now
-
-bindsym $mod+c        split toggle
-bindsym $mod+Shift+c    reload
+bindsym $mod+h focus left
+bindsym $mod+Shift+h move left 30
+bindsym $mod+j focus down
+bindsym $mod+Shift+j move down 30
+bindsym $mod+k focus up
+bindsym $mod+Shift+k move up 30
+bindsym $mod+l focus right
+bindsym $mod+Shift+l move right 30
+bindsym $mod+z gaps outer current plus 5
+bindsym $mod+Shift+z gaps outer current minus 5
+bindsym $mod+x exec /home/erra/bin/lock
+bindsym $mod+Shift+x exec shutdown now
+bindsym $mod+c split toggle
+bindsym $mod+Shift+c reload
 
 # Function Buttons
-bindsym F1        exec --no-startup-id echo "help" > /dev/null
-bindsym F11        fullscreen toggle
+bindsym F1 exec --no-startup-id echo "help" > /dev/null
+bindsym F11 fullscreen toggle
 
-bindsym $mod+F3        exec arandr
-bindsym $mod+F5        exec sudo systemctl restart NetworkManager
-bindsym $mod+F9        exec --no-startup-id sudo bash ~/.config/i3/mount.sh
-bindsym $mod+F10    exec --no-startup-id sudo bash ~/.config/i3/unmount.sh
-
-# Arrow Keys
-bindsym $mod+Left    focus left
-bindsym $mod+Down    focus down
-bindsym $mod+Up        focus up
-bindsym $mod+Right     focus right
-bindsym $mod+Shift+Left    move left
-bindsym $mod+Shift+Down    move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+F3 exec hdres
+bindsym $mod+F5 exec sudo systemctl restart NetworkManager
 
 # Workspaces
-
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -124,50 +82,62 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1        workspace $ws1
-bindsym $mod+2        workspace $ws2
-bindsym $mod+3        workspace $ws3
-bindsym $mod+4        workspace $ws4
-bindsym $mod+5        workspace $ws5
-bindsym $mod+6        workspace $ws6
-bindsym $mod+7        workspace $ws7
-bindsym $mod+8        workspace $ws8
-bindsym $mod+9        workspace $ws9
-bindsym $mod+0        workspace $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1    move container to workspace $ws1
-bindsym $mod+Shift+2    move container to workspace $ws2
-bindsym $mod+Shift+3    move container to workspace $ws3
-bindsym $mod+Shift+4    move container to workspace $ws4
-bindsym $mod+Shift+5    move container to workspace $ws5
-bindsym $mod+Shift+6    move container to workspace $ws6
-bindsym $mod+Shift+7    move container to workspace $ws7
-bindsym $mod+Shift+8    move container to workspace $ws8
-bindsym $mod+Shift+9    move container to workspace $ws9
-bindsym $mod+Shift+0    move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Home        workspace $ws1
-bindsym $mod+Shift+Home        move container to workspace $ws1
-bindsym $mod+End        workspace $ws10
-bindsym $mod+Shift+End        move container to workspace $ws10
-bindsym $mod+Prior        workspace prev
-bindsym $mod+Shift+Prior    move container to workspace prev
-bindsym $mod+Next        workspace next
-bindsym $mod+Shift+Next        move container to workspace next
+bindsym $mod+Home workspace $ws1
+bindsym $mod+Shift+Home move container to workspace $ws1
+bindsym $mod+End workspace $ws10
+bindsym $mod+Shift+End move container to workspace $ws10
+bindsym $mod+Prior workspace prev
+bindsym $mod+Shift+Prior move container to workspace prev
+bindsym $mod+Next workspace next
+bindsym $mod+Shift+Next move container to workspace next
+
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws8 output DP1
+workspace $ws9 output DP1
+workspace $ws10 output DP1
+
+# startup tools
+bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws1
+bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $TICKETS; workspace $ws2
+bindsym $mod+Shift+e exec --no-startup-id $browser --new-window open.spotify.com; workspace $ws9
+bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 
 # Media
-bindsym Print             exec --no-startup-id scrot
-bindsym Shift+Print         exec --no-startup-id scrot -u
+bindsym Print exec --no-startup-id scrot
+bindsym Shift+Print exec --no-startup-id scrot -u
 
-bindsym $mod+Scroll_Lock    exec --no-startup-id $audio
+bindsym $mod+Scroll_Lock exec --no-startup-id $audio
 
-bindsym XF86Launch1        exec --no-startup-id scrot
-bindsym Shift+XF86Launch1    exec --no-startup-id scrot -u
+bindsym XF86Launch1 exec --no-startup-id scrot
+bindsym Shift+XF86Launch1 exec --no-startup-id scrot -u
 
 # alsa master volume controls
-bindsym $mod+o exec --no-startup-id amixer -q sset Master 2%- unmute && pkill -RTMIN+10 i3blocks
-bindsym $mod+p exec --no-startup-id amixer -q sset Master 2%+ unmute && pkill -RTMIN+10 i3blocks
+bindsym $mod+o exec --no-startup-id amixer -q sset Master 2%- unmute
+bindsym $mod+p exec --no-startup-id amixer -q sset Master 2%+ unmute
 # pulse audio volume controls
 bindsym $mod+u exec --no-startup-id pamixer -d 2
 bindsym $mod+i exec --no-startup-id pamixer -i 2
@@ -182,5 +152,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86MonBrightnessUp exec --no-startup-id /home/erra/bin/undim
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo undim
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo dim
-exec --no-startup-id setxkbmap -layout something -variant something -option ctrl:nocaps
-exec --no-startup-id dunst
+
+exec_always --no-startup-id setxkbmap -layout us -variant us -option ctrl:nocaps
+exec_always --no-startup-id dunst
+#exec_always --no-startup-id fcitx5 -d
+assign [class="^Emacs$"] $ws4
+bindsym $mod+BackSpace exec emacs; workspace $ws4

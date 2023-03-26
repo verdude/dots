@@ -1,19 +1,4 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "03adef25678d624333371e34ec050db1ad7d13c9db92995df5085ebb82978671" default))
- '(inhibit-startup-screen t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(line-number-current-line ((t (:inherit line-number :background "brightblack" :box (:line-width (2 . 2) :color "brightcyan" :style released-button))))))
-
-(setq package-enable-at-startup nil)
+(setq package-enable-at-startup t)
 (setq vc-follow-symlinks t)
 (ido-mode 1)
 (defvar ido-enable-flex-matching)
@@ -49,6 +34,57 @@
 (straight-use-package 'helm-ls-git)
 (straight-use-package 'terraform-mode)
 (straight-use-package 'go-mode)
+(straight-use-package 'darkroom)
+(straight-use-package 'fzf)
+(straight-use-package 'evil)
+(straight-use-package 'magit)
+(straight-use-package 'yaml-mode)
+
+(straight-use-package 'color-theme-sanityinc-solarized)
+(straight-use-package 'color-theme-sanityinc-tomorrow)
+
+;; Don't prompt to confirm theme safety. This avoids problems with
+;; first-time startup on Emacs > 26.3.
+(setq custom-safe-themes t)
+
+;; If you don't customize it, this is the theme you get.
+(setq custom-enabled-themes '(sanityinc-tomorrow-eighties))
+
+;; Ensure that themes will be applied even if they have not been customized
+(defun reapply-themes ()
+  "Forcibly load the themes listed in `custom-enabled-themes'."
+  (dolist (theme custom-enabled-themes)
+    (unless (custom-theme-p theme)
+      (load-theme theme)))
+  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes))))
+
+(add-hook 'after-init-hook 'reapply-themes)
+
+(defun light ()
+  "Activate a light color theme."
+  (interactive)
+  (setq custom-enabled-themes '(sanityinc-tomorrow-day))
+  (reapply-themes))
+
+(defun dark ()
+  "Activate a dark color theme."
+  (interactive)
+  (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
+  (reapply-themes))
+
+;(when (maybe-require-package 'dimmer)
+  ;(setq-default dimmer-fraction 0.15)
+  ;(add-hook 'after-init-hook 'dimmer-mode)
+  ;(with-eval-after-load 'dimmer
+    ;; TODO: file upstream as a PR
+    ;(advice-add 'frame-set-background-mode :after (lambda (&rest args) (dimmer-process-all))))
+  ;(with-eval-after-load 'dimmer
+    ;; Don't dim in terminal windows. Even with 256 colours it can
+    ;; lead to poor contrast.  Better would be to vary dimmer-fraction
+    ;; according to frame type.
+    ;(defun sanityinc/display-non-graphic-p ()
+      ;(not (display-graphic-p)))
+    ;(add-to-list 'dimmer-exclusion-predicates 'sanityinc/display-non-graphic-p)))
 
 (global-set-key (kbd "C-x C-p") 'fzf-git)
 (global-set-key (kbd "C-x C-i") 'darkroom-tentative-mode)
@@ -63,3 +99,12 @@
 (helm-mode 1)
 (setq tab-width 2)
 (put 'upcase-region 'disabled nil)
+
+;; Start off warm and fuzzy
+;; courtesy of mr purcell
+(setq-default initial-scratch-message
+              (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!!\n\n"))
+
+(setq inhibit-startup-screen t)
+(setq x-select-enable-clipboard t)
+;;(set-face-attribute 'default nil :height 165)
