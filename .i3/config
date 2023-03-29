@@ -8,14 +8,25 @@ gaps outer 0
 mouse_warping none
 set $mod Mod4
 floating_modifier $mod
+
 set $term terminator
 set $term2 uxterm
+
+#bindsym $mod+F5 exec sudo systemctl restart NetworkManager
+bindsym $mod+F3 exec hdres
 exec --no-startup-id xcompmgr
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id setxkbmap -layout us -variant us -option ctrl:nocaps
+exec_always --no-startup-id redshift -PO 4000
+exec_always --no-startup-id dunst
+exec_always --no-startup-id feh --bg-tile ~/.i3/wall.png
+#exec_always --no-startup-id fcitx5 -d
+
+exec --no-startup-id unclutter --timeout 2 --start-hidden --ignore-scrolling
+
 set $browser firefox
 font pango:System San Francisco Display 10
 # exec --no-startup-id nm-applet
-exec_always --no-startup-id feh --bg-tile ~/.i3/wall.png
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term -e tmux
@@ -28,7 +39,6 @@ bindsym $mod+Tab workspace back_and_forth
 
 # Letter Keys
 bindsym $mod+q kill
-bindsym $mod+Shift+q kill
 bindsym $mod+w exec qutebrowser
 bindsym $mod+r exec $term -e ranger
 bindsym $mod+Shift+r restart
@@ -65,10 +75,6 @@ bindsym $mod+Shift+c reload
 # Function Buttons
 bindsym F1 exec --no-startup-id echo "help" > /dev/null
 bindsym F11 fullscreen toggle
-bindsym F12 exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
-
-bindsym $mod+F3 exec hdres
-bindsym $mod+F5 exec sudo systemctl restart NetworkManager
 
 # Workspaces
 set $ws1 "1"
@@ -128,13 +134,9 @@ bindsym $mod+Shift+e exec --no-startup-id $browser --new-window open.spotify.com
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 
 # Media
-bindsym Print exec --no-startup-id scrot
-bindsym Shift+Print exec --no-startup-id scrot -u
+bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 
 bindsym $mod+Scroll_Lock exec --no-startup-id $audio
-
-bindsym XF86Launch1 exec --no-startup-id scrot
-bindsym Shift+XF86Launch1 exec --no-startup-id scrot -u
 
 # alsa master volume controls
 bindsym $mod+o exec --no-startup-id amixer -q sset Master 2%- unmute
@@ -154,9 +156,5 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo undim
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo dim
 
-exec_always --no-startup-id setxkbmap -layout us -variant us -option ctrl:nocaps
-exec_always --no-startup-id dunst
-exec_always --no-startup-id unclutter --timeout 2 --start-hidden --ignore-scrolling
-#exec_always --no-startup-id fcitx5 -d
 assign [class="^Emacs$"] $ws4
 bindsym $mod+BackSpace exec emacs; workspace $ws4
