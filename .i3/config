@@ -65,6 +65,7 @@ bindsym $mod+Shift+c reload
 # Function Buttons
 bindsym F1 exec --no-startup-id echo "help" > /dev/null
 bindsym F11 fullscreen toggle
+bindsym F12 exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 
 bindsym $mod+F3 exec hdres
 bindsym $mod+F5 exec sudo systemctl restart NetworkManager
@@ -155,6 +156,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sudo dim
 
 exec_always --no-startup-id setxkbmap -layout us -variant us -option ctrl:nocaps
 exec_always --no-startup-id dunst
+exec_always --no-startup-id unclutter --timeout 2 --start-hidden --ignore-scrolling
 #exec_always --no-startup-id fcitx5 -d
 assign [class="^Emacs$"] $ws4
 bindsym $mod+BackSpace exec emacs; workspace $ws4
