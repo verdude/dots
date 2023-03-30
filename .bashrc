@@ -70,14 +70,6 @@ function spyenv() {
   fi
 }
 
-function scargo() {
-  local cargoenv="$HOME/.cargo/env"
-  if [[ -s $cargoenv ]]; then
-    . "$cargoenv"
-    export PATH="$HOME/.cargo/bin:$PATH"
-  fi
-}
-
 function srbenv() {
   which rbenv &> /dev/null && eval "$(rbenv init -)"
 }
@@ -93,14 +85,16 @@ fi
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
   spyenv
 
-elif [ -s "Cargo.toml" ]; then
-  scargo
-
 elif [ -s "Gemfile" ]; then
   srbenv
 
 elif [ -s "package.json" ]; then
   snvm
+fi
+
+cargobin=$HOME/.cargo/bin/
+if [ -d "$cargobin" ]; then
+  export PATH="$PATH:${cargobin}"
 fi
 
 brootlauncherpath=$HOME/.config/broot/launcher/bash/br
