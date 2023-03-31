@@ -28,7 +28,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 set -o vi
-setxkbmap -option ctrl:nocaps 2> /dev/null
 
 export EDITOR=vim
 

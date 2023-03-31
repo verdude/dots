@@ -39,6 +39,7 @@
 (straight-use-package 'evil)
 (straight-use-package 'magit)
 (straight-use-package 'yaml-mode)
+(straight-use-package 'bnf-mode)
 
 (straight-use-package 'color-theme-sanityinc-solarized)
 (straight-use-package 'color-theme-sanityinc-tomorrow)
@@ -108,3 +109,9 @@
 (setq inhibit-startup-screen t)
 (setq x-select-enable-clipboard t)
 ;;(set-face-attribute 'default nil :height 165)
+
+(defun create-lang-repo (dirname)
+  (make-directory dirname nil)
+  (magit-init dirname)
+  (cd dirname)
+  (switch-to-buffer-other-frame (create-file-buffer "grammar.bnf")))
