@@ -9,8 +9,8 @@ mouse_warping none
 set $mod Mod4
 floating_modifier $mod
 
-set $term terminator
-set $term2 uxterm
+set $term2 terminator
+set $term urxvt
 
 #bindsym $mod+F5 exec sudo systemctl restart NetworkManager
 bindsym $mod+F3 exec hdres
