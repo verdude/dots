@@ -12,6 +12,9 @@
 (defvar auto-save-default)
 (setq auto-save-default nil)
 (setq-default indent-tabs-mode nil)
+(setq use-short-answers t)
+
+
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -41,6 +44,7 @@
 (straight-use-package 'magit)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'bnf-mode)
+(straight-use-package 'vterm)
 
 (straight-use-package 'color-theme-sanityinc-solarized)
 (straight-use-package 'color-theme-sanityinc-tomorrow)
@@ -85,6 +89,7 @@
 (global-set-key (kbd "C-x C-r") 'helm-projects-history)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x TAB") 'indent-rigidly)
+(global-set-key (kbd "C-x RET RET") 'vterm)
 (helm-mode 1)
 (setq tab-width 2)
 (put 'upcase-region 'disabled nil)
