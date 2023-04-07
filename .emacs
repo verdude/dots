@@ -14,8 +14,6 @@
 (setq-default indent-tabs-mode nil)
 (setq use-short-answers t)
 
-
-
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq-default require-final-newline t)
@@ -79,7 +77,6 @@
   (reapply-themes))
 
 (global-set-key (kbd "C-x C-p") 'fzf-git)
-(global-set-key (kbd "C-x C-i") 'darkroom-tentative-mode)
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
 (global-set-key (kbd "C-x C-n") 'display-line-numbers-mode)
@@ -88,8 +85,9 @@
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 (global-set-key (kbd "C-x C-r") 'helm-projects-history)
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x TAB") 'indent-rigidly)
 (global-set-key (kbd "C-x RET RET") 'vterm)
+(global-set-key (kbd "C-x a |") 'darkroom-tentative-mode)
+
 (helm-mode 1)
 (setq tab-width 2)
 (put 'upcase-region 'disabled nil)
