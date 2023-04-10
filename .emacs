@@ -1,8 +1,5 @@
 (setq package-enable-at-startup t)
 (setq vc-follow-symlinks t)
-(ido-mode 1)
-(defvar ido-enable-flex-matching)
-(setq ido-enable-flex-matching t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -43,6 +40,8 @@
 (straight-use-package 'yaml-mode)
 (straight-use-package 'bnf-mode)
 (straight-use-package 'vterm)
+(straight-use-package 'switch-window)
+(straight-use-package 'dired+)
 
 (straight-use-package 'color-theme-sanityinc-solarized)
 (straight-use-package 'color-theme-sanityinc-tomorrow)
@@ -80,6 +79,7 @@
 (global-set-key (kbd "C-x /") 'darkroom-increase-margins)
 (global-set-key (kbd "C-x ,") 'darkroom-decrease-margins)
 (global-set-key (kbd "C-x C-n") 'display-line-numbers-mode)
+(global-set-key (kbd "C-x o") 'switch-window)
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)
@@ -90,7 +90,6 @@
 
 (helm-mode 1)
 (setq tab-width 2)
-(put 'upcase-region 'disabled nil)
 
 ;; Start off warm and fuzzy
 ;; courtesy of mr purcell
