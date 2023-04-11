@@ -69,7 +69,6 @@ bindsym $mod+z gaps outer current plus 5
 bindsym $mod+Shift+z gaps outer current minus 5
 bindsym $mod+x exec /home/erra/bin/lock
 bindsym $mod+Shift+x exec shutdown now
-bindsym $mod+c split toggle
 bindsym $mod+Shift+c reload
 
 # Function Buttons
@@ -135,6 +134,7 @@ bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 
 # Media
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
+bindsym --release F12 exec scrot -s -oF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 
 bindsym $mod+Scroll_Lock exec --no-startup-id $audio
 
