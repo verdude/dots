@@ -1,15 +1,18 @@
 #include "/home/erra/git/Xresources-themes/iterm-Grape.Xresources"
 
-#URxvt.geometry: 80x50
 URxvt.loginShell: true
 URxvt.iso14755: false
-URxvt.font: xft:Liberation Mono
-URxvt.italicFont: xft:Liberation Mono
+URxvt.font: xft:Hermit:size=10
+URxvt.italicFont: xft:Hermit:style=Italic:size=10
+URxvt.boldFont: xft:Hermit:style=Bold:size=10
+URxvt.boldItalicFont: xft:Hermit:style=BoldItalic:size=10
 URxvt.scrollBar: false
 URxvt.visualBell: false
 URxvt.fading: 15
 URxvt.cursorBlink: true
 URxvt.perl-ext-common: default,selection-to-clipboard
-#URxvt.clipboard.autocopy: false
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.underlineURLs: true
+URxvt.saveLines: 0
+URxvt.underlineColor: yellow
+!URxvt.clipboard.autocopy: false

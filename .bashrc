@@ -29,8 +29,7 @@ fi
 
 set -o vi
 setxkbmap -option ctrl:nocaps 2> /dev/null
-
-export EDITOR=vim
+export EDITOR=ed
 
 export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
