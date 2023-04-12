@@ -2,7 +2,7 @@
 
 URxvt.loginShell: true
 URxvt.iso14755: false
-URxvt.font: xft:Hermit:size=10
+URxvt.font: xft:Hermit:size=10,xft:DejaVuSans:size=10
 URxvt.italicFont: xft:Hermit:style=Italic:size=10
 URxvt.boldFont: xft:Hermit:style=Bold:size=10
 URxvt.boldItalicFont: xft:Hermit:style=BoldItalic:size=10
