@@ -90,6 +90,7 @@
 
 (helm-mode 1)
 (setq tab-width 2)
+(setq org-todo-keywords '("MAYBE" "PLANNING" "WAITING" "DEFERRED" "TODO" "NEXT" "IN-PROGRESS" "CANCELED" "DONE"))
 
 ;; Start off warm and fuzzy
 ;; courtesy of mr purcell

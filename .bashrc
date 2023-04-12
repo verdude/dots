@@ -27,7 +27,6 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-set -o vi
 setxkbmap -option ctrl:nocaps 2> /dev/null
 export EDITOR=ed
 
