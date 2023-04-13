@@ -10,9 +10,11 @@ URxvt.scrollBar: false
 URxvt.visualBell: false
 URxvt.fading: 15
 URxvt.cursorBlink: true
-URxvt.perl-ext-common: default,selection-to-clipboard
+URxvt.perl-ext-common: selection-to-clipboard,matcher
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.underlineURLs: true
 URxvt.saveLines: 0
 URxvt.underlineColor: yellow
-!URxvt.clipboard.autocopy: false
+URxvt.matcher.button: C-1
+URxvt.keysym.M-C-1: command:\033]710;xft:Hermit:size=10,xft:DejaVuSans:size=10\007\033]711;xft:Hermit:size=10,xft:DejaVuSans:size=10\007\033]712;xft:Hermit:size=10,xft:DejaVuSans:size=10\007\033]713;xft:Hermit:size=10,xft:DejaVuSans:size=10\007
+URxvt.keysym.M-C-2: command:\033]710;xft:Hermit:size=15,xft:DejaVuSans:size=15\007\033]711;xft:Hermit:size=15,xft:DejaVuSans:size=15\007\033]712;xft:Hermit:size=15,xft:DejaVuSans:size=15\007\033]713;xft:Hermit:size=15,xft:DejaVuSans:size=15\007
