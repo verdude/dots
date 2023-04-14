@@ -87,11 +87,6 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x RET RET") 'vterm)
 (global-set-key (kbd "C-x a |") 'darkroom-tentative-mode)
-(defun font-size-12 ()
-  "resize selected frame to font size 12"
-  (interactive)
-  (set-face-attribute 'default (selected-frame) :height 120))
-(global-set-key (kbd "M-o") 'font-size-12)
 
 (helm-mode 1)
 (setq tab-width 2)
