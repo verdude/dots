@@ -106,3 +106,4 @@
   (magit-init dirname)
   (cd dirname)
   (switch-to-buffer-other-frame (create-file-buffer "grammar.bnf")))
+(put 'set-goal-column 'disabled nil)
