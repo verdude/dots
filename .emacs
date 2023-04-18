@@ -99,7 +99,9 @@
 
 (setq inhibit-startup-screen t)
 (setq x-select-enable-clipboard t)
-(set-frame-font "Hermit" nil t)
+(if (eq system-type 'gnu/linux)
+    (set-frame-font "Hermit" nil t)
+  nil)
 
 (defun create-lang-repo (dirname)
   (make-directory dirname nil)
