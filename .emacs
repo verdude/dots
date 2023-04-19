@@ -42,9 +42,14 @@
 (straight-use-package 'vterm)
 (straight-use-package 'switch-window)
 (straight-use-package 'dired+)
+(straight-use-package 'dockerfile-mode)
 
 (straight-use-package 'color-theme-sanityinc-solarized)
 (straight-use-package 'color-theme-sanityinc-tomorrow)
+
+(setq diredp-hide-details-initially-flag nil)
+(require 'dired+)
+(diredp-toggle-find-file-reuse-dir t)
 
 ;; Don't prompt to confirm theme safety. This avoids problems with
 ;; first-time startup on Emacs > 26.3.
@@ -101,7 +106,7 @@
 (setq x-select-enable-clipboard t)
 (if (eq system-type 'gnu/linux)
     (set-frame-font "Hermit" nil t)
-  nil)
+  (set-face-attribute 'default nil :height 120))
 
 (defun create-lang-repo (dirname)
   (make-directory dirname nil)
@@ -109,5 +114,3 @@
   (cd dirname)
   (switch-to-buffer-other-frame (create-file-buffer "grammar.bnf")))
 (put 'set-goal-column 'disabled nil)
-
-(set-face-attribute 'default nil :height 100)
