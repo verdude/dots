@@ -43,19 +43,16 @@
 (straight-use-package 'switch-window)
 (straight-use-package 'dired+)
 (straight-use-package 'dockerfile-mode)
-
-(straight-use-package 'color-theme-sanityinc-solarized)
 (straight-use-package 'color-theme-sanityinc-tomorrow)
+(straight-use-package 'tommyh-theme)
+(straight-use-package 'diredfl)
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
 (diredp-toggle-find-file-reuse-dir t)
+(diredfl-global-mode)
 
-;; Don't prompt to confirm theme safety. This avoids problems with
-;; first-time startup on Emacs > 26.3.
 (setq custom-safe-themes t)
-
-;; If you don't customize it, this is the theme you get.
 (setq custom-enabled-themes '(sanityinc-tomorrow-night))
 
 ;; Ensure that themes will be applied even if they have not been customized
