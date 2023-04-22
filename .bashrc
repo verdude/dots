@@ -28,7 +28,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 setxkbmap -option ctrl:nocaps 2> /dev/null
-export EDITOR=ed
+export EDITOR=vim
 
 export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
