@@ -46,6 +46,7 @@
 (straight-use-package 'color-theme-sanityinc-tomorrow)
 (straight-use-package 'tommyh-theme)
 (straight-use-package 'diredfl)
+(straight-use-package 'panda-theme)
 
 (setq diredp-hide-details-initially-flag nil)
 (require 'dired+)
