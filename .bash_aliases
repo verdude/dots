@@ -32,7 +32,12 @@ alias startxi3='echo exec i3 > ~/.xinitrc && startx'
 alias startxawe='echo exec awesome > ~/.xinitrc && startx'
 
 # python
-alias venv='python -m venv env && . env/bin/activate'
+function venv() {
+  if [ ! -d env ]; then
+    python -m venv env
+  fi
+  . env/bin/activate
+}
 alias dea='deactivate'
 
 # docker
