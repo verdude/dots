@@ -104,3 +104,5 @@ fzfbindings=/usr/share/fzf/key-bindings.bash
 if [ -s "$fzfbindings" ]; then
   . "$fzfbindings"
 fi
+
+[ -f "/home/erra/.ghcup/env" ] && source "/home/erra/.ghcup/env"
