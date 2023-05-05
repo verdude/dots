@@ -22,6 +22,19 @@ function tmp() {
   pushd $(temporary_work $@)
 }
 
+zipedit(){
+  if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo "Usage: zipedit archive.zip folder/file.txt"
+    return 1
+  fi
+
+  unzip "$1" "$2" -d /tmp
+  pushd /tmp
+  vi "$2" && zip --update "$curdir/$1"  "$2"
+  rm -f "$2"
+  popd
+}
+
 alias sshg='ssh -A gurub'
 alias sshe='ssh -A guru'
 alias rtun='ssh -fNT -R 44442:localhost:22 api'
