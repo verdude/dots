@@ -29,6 +29,7 @@ zipedit(){
   fi
 
   unzip "$1" "$2" -d /tmp
+  curdir="$PWD"
   pushd /tmp
   vi "$2" && zip --update "$curdir/$1"  "$2"
   rm -f "$2"
