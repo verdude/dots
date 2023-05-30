@@ -4,6 +4,7 @@ alias clsl="find -L $HOME/bin -type l -print -exec rm {} +"
 alias c='xclip'
 alias cb='xclip -sel clip'
 alias p='xclip -o'
+alias pb='xclip -o -sel clip'
 alias ll="ls -lhF"
 alias la="ls -alhF"
 alias kssa='ps x | grep -v grep | grep ssh-agent | awk '"'"'{print $1}'"'"' | xargs -I{} kill {}'
