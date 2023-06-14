@@ -32,7 +32,7 @@ export EDITOR=vim
 
 export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
-export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
+export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin:$HOME/.ebcli-virtual-env/bin/"
 export LS_COLORS='ow=01;36;40'
 
 if [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]]; then
