@@ -101,8 +101,11 @@ if [ -s "$brootlauncherpath" ]; then
 fi
 
 fzfbindings=/usr/share/fzf/key-bindings.bash
+fzfubindings=/usr/share/doc/fzf/examples/key-bindings.bash
 if [ -s "$fzfbindings" ]; then
   . "$fzfbindings"
+elif [ -s "$fzfubindings" ]; then
+  . "$fzfubindings"
 fi
 
 [ -f "/home/erra/.ghcup/env" ] && source "/home/erra/.ghcup/env"
