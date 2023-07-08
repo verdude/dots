@@ -33,6 +33,7 @@ export EDITOR=vim
 export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin:$HOME/.ebcli-virtual-env/bin/"
+export PATH="$PATH:/opt/homebrew/opt/qt@5/bin"
 export LS_COLORS='ow=01;36;40'
 
 if [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]]; then
@@ -102,10 +103,13 @@ fi
 
 fzfbindings=/usr/share/fzf/key-bindings.bash
 fzfubindings=/usr/share/doc/fzf/examples/key-bindings.bash
+fzfmacbindings="/opt/homebrew/Cellar/fzf/0.38.0/shell/key-bindings.bash"
 if [ -s "$fzfbindings" ]; then
   . "$fzfbindings"
 elif [ -s "$fzfubindings" ]; then
   . "$fzfubindings"
+elif [ -s "$fzfmacbindings" ]; then
+  . "$fzfmacbindings"
 fi
 
 [ -f "/home/erra/.ghcup/env" ] && source "/home/erra/.ghcup/env"

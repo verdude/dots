@@ -1,10 +1,22 @@
 alias :q="exit"
 alias upds="$GITDIR/random/add_scripts.sh --yes"
 alias clsl="find -L $HOME/bin -type l -print -exec rm {} +"
-alias c='xclip'
-alias cb='xclip -sel clip'
-alias p='xclip -o'
-alias pb='xclip -o -sel clip'
+
+# clipboard
+function clipboard_mac()  {
+  alias c='pbcopy'
+  alias cb='pbcopy'
+  alias p='pbpaste'
+  alias pb='pbpaste'
+}
+
+function clipboard_linux() {
+  alias c='xclip'
+  alias cb='xclip -sel clip'
+  alias p='xclip -o'
+  alias pb='xclip -o -sel clip'
+}
+
 alias ll="ls -lhF"
 alias la="ls -alhF"
 alias kssa='ps x | grep -v grep | grep ssh-agent | awk '"'"'{print $1}'"'"' | xargs -I{} kill {}'
@@ -48,10 +60,11 @@ alias startxawe='echo exec awesome > ~/.xinitrc && startx'
 
 # python
 function venv() {
-  if [ ! -d env ]; then
-    python -m venv env
+  name=${1:-env}
+  if [ ! -d "${name}" ]; then
+    python -m venv "${name}"
   fi
-  . env/bin/activate
+  . "${name}/bin/activate"
 }
 alias dea='deactivate'
 
@@ -113,3 +126,9 @@ alias vdim="vim"
 alias bvinm="vim"
 alias vipm="vim"
 alias vvim="vim"
+
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+  clipboard_mac
+else
+  clipboard_linux
+fi
