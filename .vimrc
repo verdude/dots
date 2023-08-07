@@ -38,6 +38,8 @@ call plug#begin()
     "Plugin 'christoomey/vim-tmux-navigator'
 "Latex
     Plug 'gerw/vim-latex-suite'
+"Pocilot
+    Plug 'github/copilot.vim'
 call plug#end()
 
 "Airline
