@@ -27,7 +27,7 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-setxkbmap -option ctrl:nocaps 2> /dev/null
+setxkbmap -option ctrl:nocaps &> /dev/null
 export EDITOR=vim
 
 export DOTDIR="$GITDIR/dots"
@@ -77,6 +77,14 @@ function sbrew() {
   eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
+function smojo() {
+  mhome="${HOME}/.modular"
+  if [ -d "$mhome" ]; then
+    export MODULAR_HOME=$mhome
+    export PATH="${PATH}:${mhome}/pkg/packages.modular.com_mojo/bin"
+  fi
+}
+
 if [[ $OSTYPE == "darwin"* ]]; then
   sbrew
 fi
@@ -111,5 +119,3 @@ elif [ -s "$fzfubindings" ]; then
 elif [ -s "$fzfmacbindings" ]; then
   . "$fzfmacbindings"
 fi
-
-[ -f "/home/erra/.ghcup/env" ] && source "/home/erra/.ghcup/env"
