@@ -62,9 +62,12 @@ alias startxawe='echo exec awesome > ~/.xinitrc && startx'
 function venv() {
   name=${1:-env}
   if [ ! -d "${name}" ]; then
-    python -m venv "${name}"
+    python3 -m venv "${name}"
   fi
   . "${name}/bin/activate"
+  if [ -f "requirements.txt" ]; then
+    pip install -r requirements.txt
+  fi
 }
 alias dea='deactivate'
 
