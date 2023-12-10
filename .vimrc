@@ -33,13 +33,13 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 "Colors
-    Plug 'w0ng/vim-hybrid'
+    Plug 'sainnhe/everforest'
 "Tmux
     "Plugin 'christoomey/vim-tmux-navigator'
 "Latex
     Plug 'gerw/vim-latex-suite'
 "Pocilot
-    Plug 'github/copilot.vim'
+    "Plug 'github/copilot.vim'
 call plug#end()
 
 "Airline
@@ -63,7 +63,7 @@ let g:airline_theme              = 'base16_grayscale'
 "Colors
 syntax enable
 set background=dark
-colorscheme hybrid
+colorscheme everforest
 let g:solarized_termcolors=256
 "LaTeXSuite
 let g:Tex_DefaultTargetFormat = 'pdf'
@@ -77,6 +77,7 @@ inoremap <leader>llf <Plug>IMAP_JumpForward
 
 let mapleader = ','
 
+set wildignore+=dist/**
 set nofoldenable
 set relativenumber
 set number
