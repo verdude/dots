@@ -85,6 +85,8 @@ set directory=/tmp//,.//
 set undodir=/tmp/.undo//,/tmp//,.//
 set undofile
 set backupdir=/tmp/.backup//,/tmp//,.//
+set backupcopy=yes
+set backupskip=
 set backup
 set autowrite
 set pastetoggle=<F2>
@@ -167,7 +169,7 @@ command Cleanspacing :call DelTrailing() <bar> :call TabToSpace()
 command DelTrailing :call DelTrailing()
 command Tts :call TabToSpace()
 command Stt :call SpaceToTab()
-command S :update
+command W :update
 
 nnoremap <leader>ltx :%s:<++>::<cr>
 
