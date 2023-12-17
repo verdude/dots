@@ -20,6 +20,7 @@ function clipboard_linux() {
 alias ll="ls -lhF"
 alias la="ls -alhF"
 alias kssa='ps x | grep -v grep | grep ssh-agent | awk '"'"'{print $1}'"'"' | xargs -I{} kill {}'
+alias gf='git grep --untracked -inrI . | fzf'
 alias kgpg='pkill -9 gpg-agent'
 alias sssha='. repoo'
 alias rshift='redshift -PO 4000'
