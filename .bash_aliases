@@ -36,7 +36,7 @@ function tmp() {
   pushd $(temporary_work $@)
 }
 
-zipedit(){
+function zipedit() {
   if [[ -z $1 ]] || [[ -z $2 ]]; then
     echo "Usage: zipedit archive.zip folder/file.txt"
     return 1
@@ -50,8 +50,13 @@ zipedit(){
   popd
 }
 
-alias sshg='ssh -A gurub'
-alias sshe='ssh -A guru'
+function i-aws() {
+  aws --profile ${1:-personal} --output json ec2 describe-instances \
+    | jq '.Reservations|map(.Instances)|map(map({"state":.State.Name,"id":.InstanceId}))'
+}
+
+alias ssha='ssh -A padmin'
+alias sshp='ssh -A pwhoami'
 alias rtun='ssh -fNT -R 44442:localhost:22 api'
 
 # arch
