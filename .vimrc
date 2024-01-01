@@ -147,12 +147,19 @@ nnoremap <C-H> <C-W><C-H>
 cmap w!! w !sudo tee > /dev/null %
 nnoremap <leader>w :update<cr>
 
-function StyleCursorLine()
-  set cursorline
-  hi CursorLine cterm=none ctermbg=255
+function! ToggleScheme()
+  if g:colors_name == 'morning'
+    set background=dark
+    colorscheme everforest
+    "colorscheme lunaperche
+  else
+    set background=light
+    colorscheme morning
+    hi CursorLine cterm=none ctermbg=255
+  endif
 endfunction
 
-nnoremap <leader>c :call StyleCursorLine()<cr>
+nnoremap <leader>c :call ToggleScheme()<cr>
 
 cnoremap <leader>tsp set shiftwidth=2 tabstop=2 <bar> echo ">^.^<"<cr>
 cnoremap <leader>fsp set shiftwidth=4 tabstop=4 <bar> echo ">^.^<"<cr>
