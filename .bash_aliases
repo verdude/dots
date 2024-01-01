@@ -55,7 +55,7 @@ function i-aws() {
     | jq '.Reservations|map(.Instances)|map(map({"state":.State.Name,"id":.InstanceId}))'
 }
 
-alias ssha='ssh -A padmin'
+alias ssha='ssh -A defub'
 alias sshp='ssh -A pwhoami'
 alias rtun='ssh -fNT -R 44442:localhost:22 api'
 
@@ -106,6 +106,9 @@ alias goh='pushd $(go env GOPATH)/src/github.com'
 alias dfs='pushd $GITDIR/dots'
 alias scripts='pushd $GITDIR/random/thechosenones'
 alias gr='pushd $(git rev-parse --show-toplevel)'
+function langs() {
+  pushd "$GITDIR/random/langs/${1:-}"
+}
 
 # clip daemon
 alias cpd='clip_daemon'

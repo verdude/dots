@@ -60,7 +60,7 @@ let g:airline_symbols.branch     = '⎇ '
 let g:airline_symbols.spell      = 'Ꞩ'
 let g:airline_symbols.notexists  = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_theme              = 'base16_grayscale'
+"let g:airline_theme              = 'base16_grayscale'
 "Colors
 syntax enable
 set background=dark
@@ -105,7 +105,6 @@ set colorcolumn=100
 set scrolloff=1
 set splitright
 set splitbelow
-set cursorline
 set wrap
 set linebreak
 set ff=unix
@@ -116,6 +115,7 @@ set smarttab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set cursorline
 
 if !has('macunix')
   set clipboard=unnamedplus
@@ -146,6 +146,13 @@ nnoremap <C-H> <C-W><C-H>
 "nnoremap <F11> :!./%<cr>
 cmap w!! w !sudo tee > /dev/null %
 nnoremap <leader>w :update<cr>
+
+function StyleCursorLine()
+  set cursorline
+  hi CursorLine cterm=none ctermbg=255
+endfunction
+
+nnoremap <leader>c :call StyleCursorLine()<cr>
 
 cnoremap <leader>tsp set shiftwidth=2 tabstop=2 <bar> echo ">^.^<"<cr>
 cnoremap <leader>fsp set shiftwidth=4 tabstop=4 <bar> echo ">^.^<"<cr>
