@@ -177,7 +177,9 @@ function SpaceToTab()
 endfunction
 
 function DelTrailing()
-  %s/\s\s*\n/\r/e
+  normal mp
+  %s/\v\s+$//e
+  normal `p
 endfunction
 
 command Cleanspacing :call DelTrailing() <bar> :call TabToSpace()
