@@ -116,10 +116,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set cursorline
-
-if !has('macunix')
-  set clipboard=unnamedplus
-endif
+set clipboard+=unnamedplus
 
 "Automatic, but try z= for auto fix
 "set spell spelllang=en_us
@@ -129,6 +126,7 @@ au BufRead /tmp/mutt-* set tw=76
 
 inoremap kj <esc>
 
+nnoremap ' `
 nnoremap / /\v
 nnoremap <leader>/ /
 nnoremap <leader>m :Goyo<cr>
