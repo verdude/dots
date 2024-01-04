@@ -47,7 +47,7 @@ call plug#end()
 set t_Co=256
 set laststatus=2
 let g:airline_powerline_fonts=1
-if !exists('g:airline_symbols')
+if !exists("g:airline_symbols")
     let g:airline_symbols = {}
 endif
 let g:airline_left_sep           = '»'
@@ -67,7 +67,9 @@ set background=dark
 colorscheme everforest
 let g:solarized_termcolors=256
 "LaTeXSuite
-let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_DefaultTargetFormat="pdf"
+
+let g:mapleader=","
 nnoremap <leader>llf <Plug>IMAP_JumpForward
 vnoremap <leader>llf <Plug>IMAP_JumpForward
 inoremap <leader>llf <Plug>IMAP_JumpForward
@@ -75,8 +77,6 @@ inoremap <leader>llf <Plug>IMAP_JumpForward
 "Non-Plugins
 "autocmd InsertEnter * set norelativenumber
 "autocmd InsertLeave * set relativenumber
-
-let mapleader = ','
 
 set wildignore+=dist/**
 set nofoldenable
@@ -177,7 +177,9 @@ function SpaceToTab()
 endfunction
 
 function DelTrailing()
-  %s/\s\s*\n/\r/e
+  normal mp
+  %s/\v\s+$//e
+  normal `p
 endfunction
 
 command Cleanspacing :call DelTrailing() <bar> :call TabToSpace()
