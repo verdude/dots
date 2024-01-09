@@ -139,6 +139,12 @@ alias bvinm="vim"
 alias vipm="vim"
 alias vvim="vim"
 
+function genctags() {
+  mapfile -t -d '' ctagsfiles < <(git ls-files \
+    --exclude-standard --cache --others -z)
+  ctags "${ctagsfiles[@]}"
+}
+
 if [[ "$OSTYPE" =~ "darwin" ]]; then
   clipboard_mac
 else
