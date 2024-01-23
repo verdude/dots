@@ -35,10 +35,7 @@ export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin" #:$HOME/.ebcli-virtual-env/bin/"
 export PATH="$PATH:/opt/homebrew/opt/qt@5/bin"
 export LS_COLORS='ow=01;36;40'
-
-if [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]]; then
-  eval $(keychain --agents ssh --eval id_ed25519 2> /dev/null)
-fi
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 
 export HISTFILESIZE=
 export HISTSIZE=

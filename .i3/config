@@ -144,8 +144,8 @@ bindsym $mod+Scroll_Lock exec --no-startup-id $audio
 bindsym $mod+o exec --no-startup-id amixer -q sset Master 2%- unmute
 bindsym $mod+p exec --no-startup-id amixer -q sset Master 2%+ unmute
 # pulse audio volume controls
-bindsym $mod+u exec --no-startup-id pamixer -d 2
-bindsym $mod+i exec --no-startup-id pamixer -i 2
+bindsym $mod+u exec --no-startup-id pamixer -d 2 --allow-boost
+bindsym $mod+i exec --no-startup-id pamixer -i 2 --allow-boost
 # mute with pulse
 bindsym $mod+m exec --no-startup-id pamixer -t
 
