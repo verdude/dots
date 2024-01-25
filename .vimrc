@@ -158,11 +158,12 @@ function! ToggleScheme()
 endfunction
 
 nnoremap <leader>c :call ToggleScheme()<cr>
+inoremap <F4> import ipdb;ipdb.set_trace()
 
-cnoremap <leader>tsp set shiftwidth=2 tabstop=2 <bar> echo ">^.^<"<cr>
-cnoremap <leader>fsp set shiftwidth=4 tabstop=4 <bar> echo ">^.^<"<cr>
-cnoremap <leader>zxw set noexpandtab sw=4 ts=4 <bar> echo ">>>>>>>idiot<<<<<<<"<cr>
-cnoremap <leader>wxz set expandtab sw=4 ts=4 <bar> echo ">>>>>>>reverse idiot<<<<<<<"<cr>
+cnoremap <leader>tsp set shiftwidth=2 tabstop=2 <cr>
+cnoremap <leader>fsp set shiftwidth=4 tabstop=4 <cr>
+cnoremap <leader>zxw set noexpandtab sw=4 ts=4 <cr>
+cnoremap <leader>wxz set expandtab sw=4 ts=4 <cr>
 cnoremap <leader>noff set nonumber relativenumber!<cr>
 cnoremap <leader>non set number relativenumber<cr>
 

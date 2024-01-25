@@ -154,9 +154,5 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# bindsym XF86MonBrightnessUp exec --no-startup-id /home/erra/bin/undim
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo undim
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo dim
-
 assign [class="^Emacs$"] $ws4
 bindsym $mod+BackSpace exec emacs; workspace $ws4
