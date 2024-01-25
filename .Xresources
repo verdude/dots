@@ -1,4 +1,4 @@
-#include "/home/erra/git/Xresources-themes/iterm-Brogrammer.Xresources"
+#include "/home/erra/git/xthemes/iterm-Brogrammer.Xresources"
 
 URxvt.loginShell: true
 URxvt.iso14755: false
