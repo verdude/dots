@@ -53,6 +53,8 @@ bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
 bindsym $mod+s gaps inner current plus 5
 bindsym $mod+Shift+s gaps inner current minus 5
 bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
+bindsym F12 workspace $ws6; workspace $ws10
+bindsym F1 workspace $ws10; workspace $ws6
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+d exec rofi -show run -lines 5 -opacity "85" -width 25 -font "System San Francisco Display 9"
@@ -72,7 +74,6 @@ bindsym $mod+Shift+x exec shutdown now
 bindsym $mod+Shift+c reload
 
 # Function Buttons
-bindsym F1 exec --no-startup-id echo "help" > /dev/null
 bindsym F11 fullscreen toggle
 
 # Workspaces
