@@ -1,4 +1,3 @@
-# Needed for i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 1
 gaps inner 10
@@ -9,10 +8,8 @@ mouse_warping none
 set $mod Mod4
 floating_modifier $mod
 
-set $term2 terminator
 set $term urxvt
 
-#bindsym $mod+F5 exec sudo systemctl restart NetworkManager
 bindsym $mod+F3 exec hdres
 exec --no-startup-id xcompmgr
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -20,27 +17,22 @@ exec_always --no-startup-id setxkbmap -layout us -variant us -option ctrl:nocaps
 exec_always --no-startup-id redshift -PO 4000
 exec_always --no-startup-id dunst
 exec_always --no-startup-id feh --bg-tile ~/.i3/wall.png
-#exec_always --no-startup-id fcitx5 -d
+exec_always --no-startup-id fcitx5 -d
 
 exec --no-startup-id unclutter --timeout 2 --start-hidden --ignore-scrolling
 
 set $browser firefox
-font pango:System San Francisco Display 10
-# exec --no-startup-id nm-applet
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term -e tmux
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-bindsym $mod+Escape exec --no-startup-id xset -display :0.0 dpms force off
 bindsym $mod+Shift+Escape exec i3-msg exit
 bindsym $mod+Shift+BackSpace exec reboot
 bindsym $mod+Tab workspace back_and_forth
 
-# Letter Keys
 bindsym $mod+q kill
 bindsym $mod+w exec qutebrowser
-bindsym $mod+r exec $term -e ranger
 bindsym $mod+Shift+r restart
 bindsym $mod+t split toggle
 
@@ -67,16 +59,12 @@ bindsym $mod+k focus up
 bindsym $mod+Shift+k move up 30
 bindsym $mod+l focus right
 bindsym $mod+Shift+l move right 30
-bindsym $mod+z gaps outer current plus 5
-bindsym $mod+Shift+z gaps outer current minus 5
 bindsym $mod+x exec /home/erra/bin/lock
 bindsym $mod+Shift+x exec shutdown now
 bindsym $mod+Shift+c reload
 
-# Function Buttons
 bindsym F11 fullscreen toggle
 
-# Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -88,7 +76,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -100,7 +87,6 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -125,32 +111,25 @@ workspace $ws1 output primary
 workspace $ws2 output primary
 workspace $ws3 output primary
 workspace $ws4 output primary
-workspace $ws8 output DP1
-workspace $ws9 output DP1
-workspace $ws10 output DP1
+workspace $ws6 output DP0
+workspace $ws8 output DP0
+workspace $ws9 output DP0
+workspace $ws10 output DP0
 
-# startup tools
-bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws1
-bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $TICKETS; workspace $ws2
-bindsym $mod+Shift+e exec --no-startup-id $browser --new-window open.spotify.com; workspace $ws9
+bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws10
+bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $TICKETS; workspace $ws9
+bindsym $mod+Shift+e exec --no-startup-id $browser --new-window open.spotify.com; workspace $ws3
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 
-# Media
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 bindsym --release $mod+F12 exec scrot -s -oF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 
 bindsym $mod+Scroll_Lock exec --no-startup-id $audio
 
-# alsa master volume controls
-bindsym $mod+o exec --no-startup-id amixer -q sset Master 2%- unmute
-bindsym $mod+p exec --no-startup-id amixer -q sset Master 2%+ unmute
-# pulse audio volume controls
 bindsym $mod+u exec --no-startup-id pamixer -d 2 --allow-boost
 bindsym $mod+i exec --no-startup-id pamixer -i 2 --allow-boost
-# mute with pulse
 bindsym $mod+m exec --no-startup-id pamixer -t
 
-# media
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous

@@ -7,6 +7,7 @@ if [ -s /etc/bash.bashrc ]; then
 fi
 
 export GITDIR="${GITDIR:-$HOME/git}"
+export PS1=" \W $ "
 
 if [[ -s "$HOME/.alt" ]]; then
   source "$HOME/.alt"
