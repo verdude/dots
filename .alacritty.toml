@@ -1,0 +1,18 @@
+[font]
+size = 10.0
+
+[font.bold]
+family = "Hermit"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hermit"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hermit"
+style = "Italic"
+
+[font.normal]
+family = "Hermit"
+style = "Regular"

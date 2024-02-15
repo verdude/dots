@@ -18,6 +18,8 @@ exec_always --no-startup-id redshift -PO 4000
 exec_always --no-startup-id dunst
 exec_always --no-startup-id feh --bg-tile ~/.i3/wall.png
 exec_always --no-startup-id fcitx5 -d
+exec_always --no-startup-id dbus-update-activation-environment --all
+exec_always --no-startup-id gnome-keyring-daemon -r
 
 exec --no-startup-id unclutter --timeout 2 --start-hidden --ignore-scrolling
 
@@ -49,7 +51,7 @@ bindsym F1 workspace $ws6; workspace $ws10
 bindsym F12 workspace $ws10; workspace $ws6
 
 bindsym $mod+f fullscreen toggle
-bindsym $mod+d exec rofi -show run -lines 5 -opacity "85" -width 25 -font "System San Francisco Display 9"
+bindsym $mod+d exec rofi -show run -lines 5 -opacity "85" -width 15 -font "Hermit 12"
 
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30
@@ -118,7 +120,7 @@ workspace $ws10 output DP0
 
 bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws10
 bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $TICKETS; workspace $ws9
-bindsym $mod+Shift+e exec --no-startup-id $browser --new-window open.spotify.com; workspace $ws3
+bindsym $mod+Shift+e exec --no-startup-id spotify-launcher; workspace $ws3
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
