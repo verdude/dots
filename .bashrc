@@ -109,7 +109,7 @@ fi
 
 fzfbindings=/usr/share/fzf/key-bindings.bash
 fzfubindings=/usr/share/doc/fzf/examples/key-bindings.bash
-fzfmacbindings="/opt/homebrew/Cellar/fzf/0.44.1/shell/key-bindings.bash"
+fzfmacbindings="/opt/homebrew/Cellar/fzf/0.46.1/shell/key-bindings.bash"
 if [ -s "$fzfbindings" ]; then
   . "$fzfbindings"
 elif [ -s "$fzfubindings" ]; then
