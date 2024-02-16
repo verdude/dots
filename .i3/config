@@ -8,7 +8,8 @@ mouse_warping none
 set $mod Mod4
 floating_modifier $mod
 
-set $term urxvt
+set $term2 urxvt
+set $term alacritty
 
 bindsym $mod+F3 exec hdres
 exec --no-startup-id xcompmgr
@@ -109,14 +110,16 @@ bindsym $mod+Shift+Prior move container to workspace prev
 bindsym $mod+Next workspace next
 bindsym $mod+Shift+Next move container to workspace next
 
-workspace $ws1 output primary
-workspace $ws2 output primary
-workspace $ws3 output primary
-workspace $ws4 output primary
-workspace $ws6 output DP0
-workspace $ws8 output DP0
-workspace $ws9 output DP0
-workspace $ws10 output DP0
+set $leftmon primary
+set $rightmon DP-0
+workspace $ws1 output $leftmon
+workspace $ws2 output $leftmon
+workspace $ws3 output $leftmon
+workspace $ws4 output $leftmon
+workspace $ws6 output $rightmon
+workspace $ws8 output $rightmon
+workspace $ws9 output $rightmon
+workspace $ws10 output $rightmon
 
 bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws10
 bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $TICKETS; workspace $ws9

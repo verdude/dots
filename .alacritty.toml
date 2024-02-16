@@ -16,3 +16,11 @@ style = "Italic"
 [font.normal]
 family = "Hermit"
 style = "Regular"
+
+[keyboard]
+bindings = [
+   { key = "v", mods = "Control|Alt", action = "Paste" }
+]
+
+[scrolling]
+history = 0
