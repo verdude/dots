@@ -30,8 +30,20 @@ alias safecp='cp -n'
 alias safemv='mv -n'
 alias saferm='rm -i'
 
-alias etmp='pushd $HOME/$(ls $HOME | grep tmpdir- | head -1)'
-alias cltmp='rm -rf ~/tmpdir-*'
+_tmpdir_prefix="$HOME/tmpdir-"
+alias cltmp="rm -rf $_tmpdir_prefix*"
+alias etmp="pushd"
+function _comp_fn_etmp() {
+  local entered_word=$2 prefix=$_tmpdir_prefix prev=$3
+  [[ $prev != etmp ]] && return
+  if [[ $entered_word =~ ^tmpdir-.* ]]; then
+    prefix="$HOME/"
+  elif [[ $entered_word =~ ^$HOME/tmpdir-.* ]]; then
+    prefix=""
+  fi
+  COMPREPLY=($prefix$entered_word*)
+}
+complete -F _comp_fn_etmp etmp
 function tmp() {
   pushd $(temporary_work $@)
 }
