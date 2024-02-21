@@ -32,7 +32,13 @@ alias saferm='rm -i'
 
 _tmpdir_prefix="$HOME/tmpdir-"
 alias cltmp="rm -rf $_tmpdir_prefix*"
-alias etmp="pushd"
+function etmp() {
+  local dest=$1
+  if [[ -z $dest ]]; then
+    dest=($_tmpdir_prefix*)
+  fi
+  pushd $dest
+}
 function _comp_fn_etmp() {
   local entered_word=$2 prefix=$_tmpdir_prefix prev=$3
   [[ $prev != etmp ]] && return
