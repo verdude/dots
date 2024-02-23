@@ -42,6 +42,7 @@ export HISTFILESIZE=
 export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE="$HOME/.bash_eternal_history"
+export HISTCONTROL="ignorespace:erasedups"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 ## VIm

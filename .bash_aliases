@@ -54,6 +54,16 @@ function tmp() {
   pushd $(temporary_work $@)
 }
 
+function _comp_fn_pcapng() {
+  local entered_word=$2 prev=$3
+  if [[ $entered_word =~ ^.*\.pcapng$ ]]; then
+    return
+  else
+    mapfile -t COMPREPLY < <(compgen -f ${entered_word}*.pcapng)
+  fi
+}
+complete -F _comp_fn_pcapng pcapng
+
 function zipedit() {
   if [[ -z $1 ]] || [[ -z $2 ]]; then
     echo "Usage: zipedit archive.zip folder/file.txt"
