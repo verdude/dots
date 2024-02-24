@@ -8,8 +8,8 @@ mouse_warping none
 set $mod Mod4
 floating_modifier $mod
 
-set $term2 urxvt
 set $term alacritty
+set $term2 urxvt
 
 bindsym $mod+F3 exec hdres
 exec --no-startup-id xcompmgr
@@ -122,7 +122,7 @@ workspace $ws9 output $rightmon
 workspace $ws10 output $rightmon
 
 bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws10
-bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $TICKETS; workspace $ws9
+bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $(secret-tool lookup service capstone); workspace $ws6
 bindsym $mod+Shift+e exec --no-startup-id spotify-launcher; workspace $ws3
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 

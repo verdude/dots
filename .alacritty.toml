@@ -19,7 +19,8 @@ style = "Regular"
 
 [keyboard]
 bindings = [
-   { key = "v", mods = "Control|Alt", action = "Paste" }
+   { key = "v", mods = "Control|Alt", action = "Paste" },
+   { key = "s", mods = "Control", action = "None" },
 ]
 
 [scrolling]
