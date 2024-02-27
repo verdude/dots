@@ -8,8 +8,8 @@ mouse_warping none
 set $mod Mod4
 floating_modifier $mod
 
-set $term alacritty
-set $term2 urxvt
+set $term2 alacritty
+set $term urxvt
 
 bindsym $mod+F3 exec hdres
 exec --no-startup-id xcompmgr
@@ -25,6 +25,7 @@ exec_always --no-startup-id gnome-keyring-daemon -r
 exec --no-startup-id unclutter --timeout 2 --start-hidden --ignore-scrolling
 
 set $browser firefox
+set $browser2 firefox-developer-edition
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term -e tmux
@@ -121,7 +122,7 @@ workspace $ws8 output $rightmon
 workspace $ws9 output $rightmon
 workspace $ws10 output $rightmon
 
-bindsym $mod+Shift+g exec --no-startup-id $browser --new-window $CHAT; workspace $ws10
+bindsym $mod+Shift+g exec --no-startup-id $browser2 --new-window $(secret-tool lookup service cloud page sandbox); workspace $ws4
 bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $(secret-tool lookup service capstone); workspace $ws6
 bindsym $mod+Shift+e exec --no-startup-id spotify-launcher; workspace $ws3
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
