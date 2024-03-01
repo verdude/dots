@@ -83,8 +83,8 @@ function i-aws() {
     | jq '.Reservations|map(.Instances)|map(map({"state":.State.Name,"id":.InstanceId}))'
 }
 
-alias ssha='ssh -A defub'
-alias sshp='ssh -A pwhoami'
+alias ssha='ssh -A gurub'
+alias sshe='ssh -A guru'
 alias rtun='ssh -fNT -R 44442:localhost:22 api'
 
 # arch

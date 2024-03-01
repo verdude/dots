@@ -49,8 +49,8 @@ bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
 bindsym $mod+s gaps inner current plus 5
 bindsym $mod+Shift+s gaps inner current minus 5
 bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
-bindsym F1 workspace $ws6; workspace $ws10
-bindsym F12 workspace $ws10; workspace $ws6
+bindsym F1 workspace $ws6; workspace $ws7
+bindsym F12 workspace $ws7; workspace $ws6
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+d exec rofi -show run -lines 5 -opacity "85" -width 15 -font "Hermit 12"
@@ -112,19 +112,22 @@ bindsym $mod+Next workspace next
 bindsym $mod+Shift+Next move container to workspace next
 
 set $leftmon primary
+set $topmon DP-4
 set $rightmon DP-0
 workspace $ws1 output $leftmon
 workspace $ws2 output $leftmon
 workspace $ws3 output $leftmon
 workspace $ws4 output $leftmon
-workspace $ws6 output $rightmon
+workspace $ws5 output $topmon
+workspace $ws6 output $topmon
+workspace $ws7 output $topmon
 workspace $ws8 output $rightmon
 workspace $ws9 output $rightmon
 workspace $ws10 output $rightmon
 
-bindsym $mod+Shift+g exec --no-startup-id $browser2 --new-window $(secret-tool lookup service cloud page sandbox); workspace $ws4
+bindsym $mod+Shift+g exec --no-startup-id $browser2 --new-window $(secret-tool lookup service cloud page sandbox)
 bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $(secret-tool lookup service capstone); workspace $ws6
-bindsym $mod+Shift+e exec --no-startup-id spotify-launcher; workspace $ws3
+bindsym $mod+Shift+e exec --no-startup-id spotify-launcher
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
@@ -141,4 +144,6 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 assign [class="^Emacs$"] $ws4
+assign [class="^Spotify$"] $ws5
+assign [class="^firefoxdeveloperedition$"] $ws8
 bindsym $mod+BackSpace exec emacs; workspace $ws4
