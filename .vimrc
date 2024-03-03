@@ -116,7 +116,6 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set cursorline
-"set clipboard^=unnamedplus
 
 "Automatic, but try z= for auto fix
 "set spell spelllang=en_us
