@@ -22,11 +22,11 @@ call plug#begin()
 "Distraction Free mode
     Plug 'junegunn/goyo.vim'
 "Syntax Highlighting
-    Plug 'derekwyatt/vim-scala'
-    Plug 'elixir-editors/vim-elixir'
-    Plug 'JuliaEditorSupport/julia-vim'
+    "Plug 'derekwyatt/vim-scala'
+    "Plug 'elixir-editors/vim-elixir'
+    "Plug 'JuliaEditorSupport/julia-vim'
+    "Plug 'leafOfTree/vim-vue-plugin'
     Plug 'hashivim/vim-terraform'
-    Plug 'leafOfTree/vim-vue-plugin'
     Plug 'rust-lang/rust.vim'
     Plug 'vito-c/jq.vim'
     Plug 'ziglang/zig.vim'
@@ -38,7 +38,7 @@ call plug#begin()
 "Tmux
     "Plugin 'christoomey/vim-tmux-navigator'
 "Latex
-    Plug 'gerw/vim-latex-suite'
+    "Plug 'gerw/vim-latex-suite'
 "Pocilot
     "Plug 'github/copilot.vim'
 call plug#end()
@@ -60,7 +60,7 @@ let g:airline_symbols.branch     = '⎇ '
 let g:airline_symbols.spell      = 'Ꞩ'
 let g:airline_symbols.notexists  = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-"let g:airline_theme              = 'base16_grayscale'
+let g:airline_theme              = 'base16_grayscale'
 "Colors
 syntax enable
 set background=dark
@@ -74,7 +74,6 @@ nnoremap <leader>llf <Plug>IMAP_JumpForward
 vnoremap <leader>llf <Plug>IMAP_JumpForward
 inoremap <leader>llf <Plug>IMAP_JumpForward
 
-"Non-Plugins
 "autocmd InsertEnter * set norelativenumber
 "autocmd InsertLeave * set relativenumber
 
@@ -117,9 +116,6 @@ set shiftwidth=2
 set softtabstop=2
 set cursorline
 
-"Automatic, but try z= for auto fix
-"set spell spelllang=en_us
-
 "mutt
 au BufRead /tmp/mutt-* set tw=76
 
@@ -140,7 +136,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-"nnoremap <F11> :!./%<cr>
 cmap w!! w !sudo tee > /dev/null %
 nnoremap <leader>w :update<cr>
 
@@ -186,12 +181,10 @@ command Tts :call TabToSpace()
 command Stt :call SpaceToTab()
 command W :update
 
-nnoremap <leader>ltx :%s:<++>::<cr>
-
 if executable('ag')
-  " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+let g:tagbar_type_zig = {'ctagstype': 'zig', 'kinds':
+      \ ['f:functions', 's:structs', 'e:enums', 'u:unions', 'E:errors']}

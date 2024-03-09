@@ -30,7 +30,7 @@ def setup_logging(args):
 def main():
     args = parse_options()
     setup_logging(args)
-    blacklist = ["p.enc", ".git", "link.py", "README.txt", ".gitignore", "launch.sh"]
+    blacklist = ["p.enc", ".git", "link.py", "README.txt", ".gitignore", "launch.sh", ".ctags"]
     for x in [ x for x in os.listdir(".") if x not in blacklist ]:
         if args.remove:
             try:
