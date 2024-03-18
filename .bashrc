@@ -21,7 +21,7 @@ if [ -s "$HOME/.bash_aliases" ]; then
   . "$HOME/.bash_aliases"
 fi
 
-if [ -x /usr/bin/dircolors ]; then
+if [ -x /usr/bin/dircolors ] || [[ $OSTYPE == "darwin"* ]]; then
   alias ls='ls --color=auto'
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
