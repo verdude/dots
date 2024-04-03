@@ -9,6 +9,10 @@ fi
 export GITDIR="${GITDIR:-$HOME/git}"
 export PS1=" \W $ "
 
+if [[ $OSTYPE == darwin* ]]; then
+  declare -i __darwin=1
+fi
+
 if [[ -s "$HOME/.alt" ]]; then
   source "$HOME/.alt"
 fi
@@ -21,7 +25,7 @@ if [ -s "$HOME/.bash_aliases" ]; then
   . "$HOME/.bash_aliases"
 fi
 
-if [ -x /usr/bin/dircolors ] || [[ $OSTYPE == "darwin"* ]]; then
+if [ -x /usr/bin/dircolors ] || ((__darwin)); then
   alias ls='ls --color=auto'
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
@@ -84,7 +88,7 @@ function smojo() {
   fi
 }
 
-if [[ $OSTYPE == "darwin"* ]]; then
+if ((__darwin)); then
   sbrew
 fi
 
@@ -108,13 +112,15 @@ if [ -s "$brootlauncherpath" ]; then
   . "$brootlauncherpath"
 fi
 
-fzfbindings=/usr/share/fzf/key-bindings.bash
-fzfubindings=/usr/share/doc/fzf/examples/key-bindings.bash
-fzfmacbindings="/opt/homebrew/Cellar/fzf/0.46.1/shell/key-bindings.bash"
-if [ -s "$fzfbindings" ]; then
-  . "$fzfbindings"
-elif [ -s "$fzfubindings" ]; then
-  . "$fzfubindings"
-elif [ -s "$fzfmacbindings" ]; then
-  . "$fzfmacbindings"
-fi
+fzfbindings=(
+  /usr/share/fzf/key-bindings.bash
+  /usr/share/doc/fzf/examples/key-bindings.bash
+  /opt/homebrew/Cellar/fzf/**/shell/key-bindings.bash
+)
+
+for b in "${fzfbindings[@]}"; do
+  if [ -s "$b" ]; then
+    . "$b"
+    break
+  fi
+done
