@@ -37,7 +37,7 @@ export EDITOR=vim
 
 export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
-export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin" #:$HOME/.ebcli-virtual-env/bin/"
+export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 export PATH="$PATH:/opt/homebrew/opt/qt@5/bin"
 export LS_COLORS='ow=01;36;40'
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
@@ -85,6 +85,18 @@ function smojo() {
   if [ -d "$mhome" ]; then
     export MODULAR_HOME=$mhome
     export PATH="${PATH}:${mhome}/pkg/packages.modular.com_mojo/bin"
+  fi
+}
+
+function seb() {
+  local p
+  p="$HOME/.ebcli-virtual-env/executables/"
+  if ! echo $PATH | grep -q "$p"; then
+    echo "加eb了"
+    export PATH="$PATH:$p"
+  else
+    echo "去除eb了"
+    export PATH=$(echo $PATH | sed "s%:$p%%")
   fi
 }
 

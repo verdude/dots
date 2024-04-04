@@ -34,9 +34,7 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 "Colors
-    Plug 'sainnhe/everforest'
-"Tmux
-    "Plugin 'christoomey/vim-tmux-navigator'
+    Plug 'nordtheme/vim'
 "Latex
     "Plug 'gerw/vim-latex-suite'
 "Pocilot
@@ -61,11 +59,13 @@ let g:airline_symbols.spell      = 'Ꞩ'
 let g:airline_symbols.notexists  = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme              = 'base16_grayscale'
+
 "Colors
 syntax enable
+set notermguicolors
 set background=dark
-colorscheme everforest
-let g:solarized_termcolors=256
+colorscheme nord
+
 "LaTeXSuite
 let g:Tex_DefaultTargetFormat="pdf"
 
@@ -142,8 +142,7 @@ nnoremap <leader>w :update<cr>
 function! ToggleScheme()
   if g:colors_name == 'morning'
     set background=dark
-    colorscheme everforest
-    "colorscheme lunaperche
+    colorscheme nord
   else
     set background=light
     colorscheme morning
