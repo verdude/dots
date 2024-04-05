@@ -40,7 +40,10 @@ export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 export PATH="$PATH:/opt/homebrew/opt/qt@5/bin"
 export LS_COLORS='ow=01;36;40'
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+
+if ! ((__darwin)); then
+  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+fi
 
 export HISTFILESIZE=
 export HISTSIZE=
