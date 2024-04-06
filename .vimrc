@@ -92,6 +92,7 @@ set autowrite
 set pastetoggle=<F2>
 set ignorecase
 set smartcase
+set tagcase=smart
 set gdefault
 set incsearch
 set showmatch
