@@ -153,13 +153,10 @@ endfunction
 
 nnoremap <leader>c :call ToggleScheme()<cr>
 inoremap <F4> import ipdb;ipdb.set_trace()
-
-cnoremap <leader>tsp set shiftwidth=2 tabstop=2 <cr>
-cnoremap <leader>fsp set shiftwidth=4 tabstop=4 <cr>
-cnoremap <leader>zxw set noexpandtab sw=4 ts=4 <cr>
-cnoremap <leader>wxz set expandtab sw=4 ts=4 <cr>
 cnoremap <leader>noff set nonumber relativenumber!<cr>
 cnoremap <leader>non set number relativenumber<cr>
+nnoremap <leader>t :call GitAdd('theirs')<cr>
+nnoremap <leader>o :call GitAdd('ours')<cr>
 
 function TabToSpace()
   %s/\t/  /e
@@ -173,6 +170,15 @@ function DelTrailing()
   normal mp
   %s/\v\s+$//e
   normal `p
+endfunction
+
+function! GitAdd(whose)
+  let currentfile = shellescape(expand('%'))
+  let cmd = 'git checkout --' . a:whose . ' -- ' . l:currentfile
+  call system(cmd)
+  silent e
+  call system('git add ' . l:currentfile)
+  echo "把這份檔案加上去了 " . a:whose . '-' . l:currentfile
 endfunction
 
 command Cleanspacing :call DelTrailing() <bar> :call TabToSpace()
