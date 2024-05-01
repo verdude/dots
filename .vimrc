@@ -176,8 +176,16 @@ function! GitAdd(whose)
   let currentfile = shellescape(expand('%'))
   let cmd = 'git checkout --' . a:whose . ' -- ' . l:currentfile
   call system(cmd)
+  if v:shell_error
+    echoerr "Fail checkout"
+    return
+  endif
   silent e
   call system('git add ' . l:currentfile)
+  if v:shell_error
+    echoerr "Failed add"
+    return
+  endif
   echo "把這份檔案加上去了 " . a:whose . '-' . l:currentfile
 endfunction
 

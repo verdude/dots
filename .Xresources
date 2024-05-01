@@ -17,7 +17,7 @@ URxvt.matcher.button: C-1
 
 // ✕
 
-URxvt.font: xft:Hermit:size=10:style=Regular,xft:Noto Sans Symbols 2:size=8:style=Regular,xft:Noto Sans Mono CJK SC:size=8:style=Regular,xft:Noto Color Emoji:size=8:style=Regular
+URxvt.font: xft:Hermit:size=8:style=Regular,xft:Noto Sans Symbols 2:size=8:style=Regular,xft:Noto Sans Mono CJK SC:size=8:style=Regular,xft:Noto Color Emoji:size=8:style=Regular
 URxvt.italic: xft:Hermit:size=8:style=Italic,xft:Noto Sans Symbols 2:size=8:style=Italic,xft:Noto Sans Mono CJK SC:size=8:style=Italic,xft:Noto Color Emoji:size=8:style=Italic
 URxvt.bold: xft:Hermit:size=8:style=Bold,xft:Noto Sans Symbols 2:size=8:style=Bold,xft:Noto Sans Mono CJK SC:size=8:style=Bold,xft:Noto Color Emoji:size=8:style=Bold
 URxvt.boldItalic: xft:Hermit:size=8:style=BoldItalic,xft:Noto Sans Symbols 2:size=8:style=BoldItalic,xft:Noto Sans Mono CJK SC:size=8:style=BoldItalic,xft:Noto Color Emoji:size=8:style=BoldItalic

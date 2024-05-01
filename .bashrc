@@ -7,7 +7,7 @@ if [ -s /etc/bash.bashrc ]; then
 fi
 
 export GITDIR="${GITDIR:-$HOME/git}"
-export PS1=" \W $ "
+export PS1=" ${HOSTNAME:0:1} \W $ "
 
 if [[ $OSTYPE == darwin* ]]; then
   declare -i __darwin=1
