@@ -96,7 +96,7 @@ alias startxawe='echo exec awesome > ~/.xinitrc && startx'
 function venv() {
   name=${1:-env}
   if [ ! -d "${name}" ]; then
-    python3 -m venv "${name}"
+    python -m venv "${name}"
   fi
   . "${name}/bin/activate"
   if [ -f "requirements.txt" ]; then
