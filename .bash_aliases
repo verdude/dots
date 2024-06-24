@@ -179,3 +179,5 @@ if [[ "$OSTYPE" =~ "darwin" ]]; then
 else
   clipboard_linux
 fi
+
+alias todo="vim ~/todo.org"

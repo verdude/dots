@@ -62,8 +62,8 @@ let g:airline_theme              = 'base16_grayscale'
 
 "Colors
 syntax enable
-set notermguicolors
-set background=dark
+set termguicolors
+set background=light
 colorscheme nord
 
 "LaTeXSuite
@@ -153,10 +153,12 @@ endfunction
 
 nnoremap <leader>c :call ToggleScheme()<cr>
 inoremap <F4> import ipdb;ipdb.set_trace()
-cnoremap <leader>noff set nonumber relativenumber!<cr>
-cnoremap <leader>non set number relativenumber<cr>
+cnoremap <leader>N set nonumber relativenumber!<cr>
+cnoremap <leader>r set number relativenumber<cr>
 nnoremap <leader>t :call GitAdd('theirs')<cr>
 nnoremap <leader>o :call GitAdd('ours')<cr>
+nnoremap <leader>* :call FindInFiles(1)<cr>
+nnoremap <leader># :call FindInFiles(0)<cr>
 
 function TabToSpace()
   %s/\t/  /e
@@ -187,6 +189,23 @@ function! GitAdd(whose)
     return
   endif
   echo "把這份檔案加上去了 " . a:whose . '-' . l:currentfile
+endfunction
+
+function! FindInFiles(sensitive)
+  let file_extension = expand('%:e')
+  let current_word = expand('<cword>')
+  let cmd = 'vim "\<' . current_word . '\>" **/*.' . file_extension
+
+  let case = &ignorecase
+  if a:sensitive && case
+    set noignorecase
+  endif
+
+  execute cmd
+
+  if case
+    set ignorecase
+  endif
 endfunction
 
 command Cleanspacing :call DelTrailing() <bar> :call TabToSpace()

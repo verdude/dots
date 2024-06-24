@@ -1,6 +1,7 @@
 //#include "/home/erra/git/xthemes/base16-ocean-256.Xresources"
 //#include "/home/erra/git/xthemes/base16-grayscale-dark-256.Xresources"
-#include "/home/erra/git/xthemes/base16-atelier-lakeside-256.Xresources"
+//#include "/home/erra/git/xthemes/base16-atelier-lakeside-256.Xresources"
+#include "/home/erra/git/xthemes/light/PaperColor.Xresources"
 
 URxvt.loginShell: true
 URxvt.iso14755: false
@@ -12,7 +13,7 @@ URxvt.perl-ext-common: selection-to-clipboard,matcher
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.underlineURLs: true
 URxvt.saveLines: 0
-URxvt.underlineColor: yellow
+// URxvt.underlineColor: yellow
 URxvt.matcher.button: C-1
 
 // ✕
