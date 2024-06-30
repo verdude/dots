@@ -58,13 +58,13 @@ let g:airline_symbols.branch     = '⎇ '
 let g:airline_symbols.spell      = 'Ꞩ'
 let g:airline_symbols.notexists  = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_theme              = 'base16_grayscale'
+let g:airline_theme              = 'silver'
 
 "Colors
 syntax enable
 set termguicolors
 set background=light
-colorscheme nord
+colorscheme shine
 
 "LaTeXSuite
 let g:Tex_DefaultTargetFormat="pdf"
@@ -101,7 +101,7 @@ set hlsearch
 set textwidth=100
 set wrapmargin=2
 set formatoptions=qrn1
-set colorcolumn=100
+"set colorcolumn=100
 set scrolloff=1
 set splitright
 set splitbelow
@@ -141,13 +141,15 @@ cmap w!! w !sudo tee > /dev/null %
 nnoremap <leader>w :update<cr>
 
 function! ToggleScheme()
-  if g:colors_name == 'morning'
+  if g:colors_name == 'shine'
     set background=dark
     colorscheme nord
+    AirlineTheme base16_grayscale
   else
     set background=light
-    colorscheme morning
+    colorscheme shine
     hi CursorLine cterm=none ctermbg=255
+    AirlineTheme silver
   endif
 endfunction
 
