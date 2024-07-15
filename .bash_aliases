@@ -78,6 +78,19 @@ function zipedit() {
   popd
 }
 
+function aur-update() {
+  pushd $AUR
+  files=(*)
+  for f in "${files[@]}"; do
+    echo "$f"
+    cd "$f"
+    git fetch 2>&1 >/dev/null
+    git rev-list HEAD..@{u} | grep -q . && git pull && yes | makepkg -Csri
+    cd $AUR
+  done
+  popd
+}
+
 function i-aws() {
   aws --profile ${1:-personal} --output json ec2 describe-instances \
     | jq '.Reservations|map(.Instances)|map(map({"state":.State.Name,"id":.InstanceId}))'
@@ -129,7 +142,7 @@ alias bin='pushd ~/bin'
 alias gh="pushd $GITDIR"
 alias hg="$(which gh 2>/dev/null)"
 alias dls='pushd ~/dls'
-alias aur='mkdir -p ~/.cache/aur && pushd ~/.cache/aur'
+alias aur='mkdir -p $AUR && pushd $AUR'
 alias goh='pushd $(go env GOPATH)/src/github.com'
 alias dfs='pushd $GITDIR/dots'
 alias scripts='pushd $GITDIR/random/thechosenones'

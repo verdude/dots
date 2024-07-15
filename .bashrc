@@ -8,6 +8,7 @@ fi
 
 export GITDIR="${GITDIR:-$HOME/git}"
 export PS1=" ${HOSTNAME:0:1} \W $ "
+export AUR="${HOME}/.cache/aur"
 
 if [[ $OSTYPE == darwin* ]]; then
   declare -i __darwin=1
