@@ -58,6 +58,7 @@ let g:airline_symbols.branch     = '⎇ '
 let g:airline_symbols.spell      = 'Ꞩ'
 let g:airline_symbols.notexists  = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
+"let g:airline_theme              = 'base16_grayscale'
 let g:airline_theme              = 'silver'
 
 "Colors
