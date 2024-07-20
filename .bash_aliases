@@ -91,6 +91,12 @@ function aur-update() {
   popd
 }
 
+function unlock-keyring () {
+    read -rsp "Password: " pass
+    export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock)
+    unset pass
+}
+
 function i-aws() {
   aws --profile ${1:-personal} --output json ec2 describe-instances \
     | jq '.Reservations|map(.Instances)|map(map({"state":.State.Name,"id":.InstanceId}))'
