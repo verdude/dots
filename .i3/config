@@ -36,7 +36,6 @@ bindsym $mod+Shift+BackSpace exec reboot
 bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+q kill
-bindsym $mod+w exec qutebrowser
 bindsym $mod+Shift+r restart
 bindsym $mod+t split toggle
 
@@ -129,6 +128,9 @@ bindsym $mod+Shift+g exec --no-startup-id $browser2 --new-window $(secret-tool l
 bindsym $mod+Shift+b exec --no-startup-id $browser --new-window $(secret-tool lookup service capstone); workspace $ws6
 bindsym $mod+Shift+e exec --no-startup-id spotify-launcher
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
+bindsym $mod+w exec --no-startup-id slack
+
+bindsym $mod+a exec --no-startup-id $term, exec --no-startup-id slack, exec --no-startup-id spotify-launcher, exec --no-startup-id $browser; workspace $ws2
 
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 bindsym --release $mod+F12 exec scrot -s -oF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
@@ -145,5 +147,6 @@ bindsym XF86AudioPrev exec playerctl previous
 
 assign [class="^Emacs$"] $ws4
 assign [class="^Spotify$"] $ws5
+assign [class="^Slack$"] $ws10
 assign [class="^firefoxdeveloperedition$"] $ws8
 bindsym $mod+BackSpace exec emacs; workspace $ws4

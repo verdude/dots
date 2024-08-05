@@ -58,14 +58,14 @@ let g:airline_symbols.branch     = '⎇ '
 let g:airline_symbols.spell      = 'Ꞩ'
 let g:airline_symbols.notexists  = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-"let g:airline_theme              = 'base16_grayscale'
-let g:airline_theme              = 'silver'
+let g:airline_theme              = 'base16_grayscale'
+"let g:airline_theme              = 'silver'
 
 "Colors
 syntax enable
-set termguicolors
-set background=light
-colorscheme shine
+set notermguicolors
+set background=dark
+colorscheme nord
 
 "LaTeXSuite
 let g:Tex_DefaultTargetFormat="pdf"
