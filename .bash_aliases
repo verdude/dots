@@ -101,6 +101,7 @@ function byepant() {
       rm -rf "${d}" &
     fi
   done
+  rm -rf .pants.d &
   echo "Please."
   wait
   pkill pantsd
