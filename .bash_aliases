@@ -91,6 +91,21 @@ function aur-update() {
   popd
 }
 
+function byepant() {
+  rm -rf ~/.cache/pants &
+  rm -rf ~/.cache/pex_root &
+  rm -rf ~/.pex/venvs &
+  d=(~/.pex/*)
+  for d in "${d[@]}"; do
+    if [[ $d != venvs ]]; then
+      rm -rf "${d}" &
+    fi
+  done
+  echo "Please."
+  wait
+  pkill pantsd
+}
+
 function unlock-keyring () {
     read -rsp "Password: " pass
     export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock)
