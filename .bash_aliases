@@ -95,6 +95,7 @@ function byepant() {
   rm -rf ~/.cache/pants &
   rm -rf ~/.cache/pex_root &
   rm -rf ~/.pex/venvs &
+  rm -rf ~/.cache/nce &
   d=(~/.pex/*)
   for d in "${d[@]}"; do
     if [[ $d != venvs ]]; then
