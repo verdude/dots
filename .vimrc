@@ -63,7 +63,7 @@ let g:airline_theme              = 'base16_grayscale'
 
 "Colors
 syntax enable
-set notermguicolors
+set termguicolors
 set background=dark
 colorscheme nord
 

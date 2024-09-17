@@ -130,7 +130,7 @@ alias startxawe='echo exec awesome > ~/.xinitrc && startx'
 
 # python
 function venv() {
-  name=${1:-env}
+  name=${1:-.env}
   if [ ! -d "${name}" ]; then
     python -m venv "${name}"
   fi
