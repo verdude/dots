@@ -1,8 +1,6 @@
 if [ -s /etc/bashrc ]; then
   . /etc/bashrc
-fi
-
-if [ -s /etc/bash.bashrc ]; then
+elif [ -s /etc/bash.bashrc ]; then
   . /etc/bash.bashrc
 fi
 
@@ -99,7 +97,7 @@ function seb() {
   local p
   p="$HOME/.ebcli-virtual-env/executables/"
   if ! echo $PATH | grep -q "$p"; then
-    echo "加eb了"
+    echo "新增eb了"
     export PATH="$PATH:$p"
   else
     echo "去除eb了"
@@ -109,6 +107,12 @@ function seb() {
 
 if ((__darwin)); then
   sbrew
+  prefix=$(brew --prefix)
+  brewcompletionsh=$prefix/etc/profile.d/bash_completion.sh
+
+  if [ -r $brewcompletionsh ]; then
+    . $brewcompletionsh
+  fi
 fi
 
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
