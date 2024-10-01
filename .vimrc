@@ -30,9 +30,6 @@ call plug#begin()
     Plug 'rust-lang/rust.vim'
     Plug 'vito-c/jq.vim'
     Plug 'ziglang/zig.vim'
-"HUD
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
 "Colors
     Plug 'nordtheme/vim'
 "Latex
@@ -41,31 +38,11 @@ call plug#begin()
     "Plug 'github/copilot.vim'
 call plug#end()
 
-"Airline
-set t_Co=256
-set laststatus=2
-let g:airline_powerline_fonts=1
-if !exists("g:airline_symbols")
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep           = '»'
-let g:airline_left_sep           = '▶'
-let g:airline_right_sep          = '«'
-let g:airline_right_sep          = '◀'
-let g:airline_symbols.linenr     = '¶'
-let g:airline_symbols.maxlinenr  = '☰'
-let g:airline_symbols.branch     = '⎇ '
-let g:airline_symbols.spell      = 'Ꞩ'
-let g:airline_symbols.notexists  = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_theme              = 'base16_grayscale'
-"let g:airline_theme              = 'silver'
-
 "Colors
 syntax enable
 set termguicolors
-set background=dark
-colorscheme nord
+set background=light
+colorscheme shine
 
 "LaTeXSuite
 let g:Tex_DefaultTargetFormat="pdf"
@@ -145,12 +122,10 @@ function! ToggleScheme()
   if g:colors_name == 'shine'
     set background=dark
     colorscheme nord
-    AirlineTheme base16_grayscale
   else
     set background=light
     colorscheme shine
     hi CursorLine cterm=none ctermbg=255
-    AirlineTheme silver
   endif
 endfunction
 
