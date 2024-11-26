@@ -1,7 +1,11 @@
 //#include "/home/erra/git/xthemes/base16-ocean-256.Xresources"
 //#include "/home/erra/git/xthemes/base16-grayscale-dark-256.Xresources"
 //#include "/home/erra/git/xthemes/base16-atelier-lakeside-256.Xresources"
-#include "/home/erra/git/xthemes/light/PaperColor.Xresources"
+#include "/home/erra/git/xthemes/iterm-Brogrammer.Xresources"
+//#include "/home/erra/git/xthemes/light/PaperColor.Xresources"
+
+Xcursor.theme: Bibata-Modern-Ice
+Xcursor.size: 24
 
 URxvt.loginShell: true
 URxvt.iso14755: false

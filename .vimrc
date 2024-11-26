@@ -32,6 +32,7 @@ call plug#begin()
     Plug 'ziglang/zig.vim'
 "Colors
     Plug 'nordtheme/vim'
+    Plug 'sainnhe/everforest'
 "Latex
     "Plug 'gerw/vim-latex-suite'
 "Pocilot
@@ -41,8 +42,8 @@ call plug#end()
 "Colors
 syntax enable
 set termguicolors
-set background=light
-colorscheme shine
+set background=dark
+colorscheme everforest
 
 "LaTeXSuite
 let g:Tex_DefaultTargetFormat="pdf"
@@ -120,9 +121,11 @@ nnoremap <leader>w :update<cr>
 
 function! ToggleScheme()
   if g:colors_name == 'shine'
+    set termguicolors
     set background=dark
-    colorscheme nord
+    colorscheme everforest
   else
+    set notermguicolors
     set background=light
     colorscheme shine
     hi CursorLine cterm=none ctermbg=255

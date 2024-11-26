@@ -33,3 +33,4 @@ yarn-error.log*
 .bingrc
 *.gz
 .fonts/.uuid
+.config

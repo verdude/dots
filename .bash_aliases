@@ -6,15 +6,14 @@ alias clsl="find -L $HOME/bin -type l -print -exec rm {} +"
 function clipboard_mac()  {
   alias c='pbcopy'
   alias cb='pbcopy'
-  alias p='pbpaste'
   alias pb='pbpaste'
 }
 
 function clipboard_linux() {
-  alias c='xclip'
+  alias c='wl-copy'
   alias cb='xclip -sel clip'
-  alias p='xclip -o'
-  alias pb='xclip -o -sel clip'
+  alias p='wl-paste'
+  alias pb='wl-paste -p'
 }
 
 alias ll="ls -lhF"

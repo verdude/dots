@@ -48,8 +48,6 @@ bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
 bindsym $mod+s gaps inner current plus 5
 bindsym $mod+Shift+s gaps inner current minus 5
 bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
-bindsym F1 workspace $ws5
-bindsym F12 workspace $ws6
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+d exec rofi -show run -lines 5 -opacity "85" -width 15 -font "Hermit 12"
@@ -78,6 +76,8 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $wsdash "-"
+set $wsequils "="
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -89,6 +89,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+minus workspace $wsdash
+bindsym $mod+equal workspace $wsequils
 
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -100,6 +102,8 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+minus move container to workspace $wsdash
+bindsym $mod+Shift+equal move container to workspace $wsequils
 
 bindsym $mod+Home workspace $ws1
 bindsym $mod+Shift+Home move container to workspace $ws1
@@ -117,6 +121,8 @@ workspace $ws1 output $leftmon
 workspace $ws2 output $leftmon
 workspace $ws3 output $leftmon
 workspace $ws4 output $leftmon
+workspace $wsdash output $leftmon
+workspace $wsequils output $leftmon
 workspace $ws5 output $topmon
 workspace $ws6 output $topmon
 workspace $ws7 output $topmon
@@ -130,7 +136,7 @@ bindsym $mod+Shift+e exec --no-startup-id spotify-launcher
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 bindsym $mod+w exec --no-startup-id slack
 
-bindsym $mod+a exec --no-startup-id slack, exec --no-startup-id spotify-launcher, exec --no-startup-id $browser, exec --no-startup-id sunsama, exec --no-startup-id cursor, exec --no-startup-id $term; workspace $ws1
+bindsym $mod+a exec --no-startup-id slack, exec --no-startup-id spotify-launcher, exec --no-startup-id $browser, exec --no-startup-id cursor, exec --no-startup-id $term; workspace $ws1
 
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 bindsym --release $mod+F12 exec scrot -s -oF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
@@ -146,8 +152,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 assign [class="^Emacs$"] $ws4
-assign [class="^Cursor$"] $ws4
-assign [class="^Sunsama$"] $ws3
+assign [class="^Cursor$"] $ws3
 assign [class="^Spotify$"] $ws5
 assign [class="^Slack$"] $ws10
 assign [class="^firefox$"] $ws2
