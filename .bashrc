@@ -4,6 +4,9 @@ elif [ -s /etc/bash.bashrc ]; then
   . /etc/bash.bashrc
 fi
 
+set -o vi
+bind -m vi-insert '"\C-l": clear-screen'
+bind -m vi-command '"\C-l": clear-screen'
 export GITDIR="${GITDIR:-$HOME/git}"
 export PS1=" ${HOSTNAME:0:1} \W $ "
 export AUR="${HOME}/.cache/aur"
@@ -94,15 +97,14 @@ function smojo() {
 }
 
 function seb() {
-  local p
-  p="$HOME/.ebcli-virtual-env/executables/"
-  if ! echo $PATH | grep -q "$p"; then
-    echo "新增eb了"
-    export PATH="$PATH:$p"
-  else
+  if [ -n "$VIRTUAL_ENV" ]; then
+    dea
     echo "去除eb了"
-    export PATH=$(echo $PATH | sed "s%:$p%%")
   fi
+  ph
+  venv
+  pod
+  echo "新增eb了"
 }
 
 if ((__darwin)); then
