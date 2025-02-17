@@ -16,7 +16,7 @@ function clipboard_linux() {
   alias pb='wl-paste -p'
 }
 
-alias ll="ls -lhF"
+alias ll="ls -lhFt"
 alias la="ls -alhF"
 alias kssa='ps x | grep -v grep | grep ssh-agent | awk '"'"'{print $1}'"'"' | xargs -I{} kill {}'
 alias gf='git grep --untracked -inrI . | fzf'
