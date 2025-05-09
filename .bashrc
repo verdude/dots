@@ -8,11 +8,38 @@ set -o vi
 bind -m vi-insert '"\C-l": clear-screen'
 bind -m vi-command '"\C-l": clear-screen'
 export GITDIR="${GITDIR:-$HOME/git}"
-export PS1=" ${HOSTNAME:0:1} \W $ "
+export PS1=" ${HOSTNAME:0:2} \W $ "
 export AUR="${HOME}/.cache/aur"
 
+declare -i __darwin=0
 if [[ $OSTYPE == darwin* ]]; then
-  declare -i __darwin=1
+  __darwin=1
+fi
+
+if ((__darwin)); then
+  function sbrew() {
+    local brew_bin
+    if [[ -x "/opt/homebrew/bin/brew" ]]; then
+      brew_bin="/opt/homebrew/bin/brew"
+    elif [[ -x "/usr/local/bin/brew" ]]; then
+      brew_bin="/usr/local/bin/brew"
+    else
+      echo "Warning: brew command not found in /opt/homebrew/bin or /usr/local/bin" >&2
+      return 1
+    fi
+    eval "$($brew_bin shellenv)"
+    psqlpath=(/opt/homebrew/opt/postgresql@*/bin/)
+    if [ "${#psqlpath[@]}" -gt 0 ]; then
+      export PATH="$PATH:${psqlpath[0]}"
+    fi
+  }
+  sbrew
+  prefix=$(brew --prefix)
+  brewcompletionsh=$prefix/etc/profile.d/bash_completion.sh
+
+  if [ -r "$brewcompletionsh" ]; then
+    . "$brewcompletionsh"
+  fi
 fi
 
 if [[ -s "$HOME/.alt" ]]; then
@@ -40,7 +67,9 @@ export EDITOR=vim
 export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
-export PATH="$PATH:/opt/homebrew/opt/qt@5/bin"
+if ((__darwin)); then
+  export PATH="$PATH:$prefix/opt/qt@5/bin"
+fi
 export PATH="$PATH:$HOME/fvm/default/bin"
 export LS_COLORS='ow=01;36;40'
 
@@ -84,10 +113,6 @@ function srbenv() {
   which rbenv &> /dev/null && eval "$(rbenv init -)"
 }
 
-function sbrew() {
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-}
-
 function smojo() {
   mhome="${HOME}/.modular"
   if [ -d "$mhome" ]; then
@@ -106,16 +131,6 @@ function seb() {
   pod
   echo "新增eb了"
 }
-
-if ((__darwin)); then
-  sbrew
-  prefix=$(brew --prefix)
-  brewcompletionsh=$prefix/etc/profile.d/bash_completion.sh
-
-  if [ -r $brewcompletionsh ]; then
-    . $brewcompletionsh
-  fi
-fi
 
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
   spyenv
@@ -144,7 +159,7 @@ fzfbindings=(
 )
 
 for b in "${fzfbindings[@]}"; do
-  if [ -s "$b" ]; then
+  if [[ -f "$b" ]]; then
     . "$b"
     break
   fi
