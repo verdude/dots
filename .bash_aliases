@@ -10,10 +10,17 @@ function clipboard_mac()  {
 }
 
 function clipboard_linux() {
-  alias c='wl-copy'
-  alias cb='xclip -sel clip'
-  alias p='wl-paste'
-  alias pb='wl-paste -p'
+  if [ -n "$WAYLAND_DISPLAY" ]; then
+    alias c='wl-copy'
+    alias cb='wl-copy'
+    alias p='wl-paste'
+    alias pb='wl-paste -p'
+  else
+    alias c='xclip'
+    alias cb='xclip -sel clip'
+    alias p='xclip -o'
+    alias pb='xclip -o -sel clip'
+  fi
 }
 
 alias ll="ls -lhFt"
