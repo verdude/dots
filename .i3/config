@@ -136,7 +136,7 @@ bindsym $mod+Shift+e exec --no-startup-id spotify-launcher
 bindsym $mod+Shift+w exec --no-startup-id $browser; workspace $ws10
 bindsym $mod+w exec --no-startup-id slack
 
-bindsym $mod+a exec --no-startup-id slack, exec --no-startup-id spotify-launcher, exec --no-startup-id $browser, exec --no-startup-id cursor, exec --no-startup-id $term; workspace $ws1
+bindsym $mod+a exec --no-startup-id slack, exec --no-startup-id spotify-launcher, exec --no-startup-id $browser, exec --no-startup-id $term; workspace $ws1
 
 bindsym Print exec --no-startup-id scrot -ouF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
 bindsym --release $mod+F12 exec scrot -s -oF /tmp/yizhangzhaopian -e 'xclip -sel clip -t image/png -i /tmp/yizhangzhaopian'
@@ -152,7 +152,6 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 assign [class="^Emacs$"] $ws4
-assign [class="^Cursor$"] $ws3
 assign [class="^Spotify$"] $ws5
 assign [class="^Slack$"] $ws10
 assign [class="^firefox$"] $ws2
