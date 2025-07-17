@@ -16,7 +16,7 @@ exec --no-startup-id xcompmgr
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id setxkbmap -layout us -variant us -option ctrl:nocaps
 exec_always --no-startup-id redshift -PO 4000
-exec_always --no-startup-id dunst
+exec_always --no-startup-id dunst --startup_notification
 exec_always --no-startup-id feh --bg-tile ~/.i3/wall.png
 exec_always --no-startup-id fcitx5 -d
 exec_always --no-startup-id dbus-update-activation-environment --all
