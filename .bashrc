@@ -137,9 +137,6 @@ if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
 
 elif [ -s "Gemfile" ]; then
   srbenv
-
-elif [ -s "package.json" ]; then
-  snvm
 fi
 
 cargobin=$HOME/.cargo/bin/

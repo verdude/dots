@@ -64,7 +64,7 @@ bindsym $mod+x exec /home/erra/bin/lock
 bindsym $mod+Shift+x exec shutdown now
 bindsym $mod+Shift+c reload
 
-bindsym F11 fullscreen toggle
+bindsym $mod+F11 fullscreen toggle
 
 set $ws1 "1"
 set $ws2 "2"

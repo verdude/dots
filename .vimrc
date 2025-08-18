@@ -18,7 +18,7 @@ call plug#begin()
     Plug 'tpope/vim-surround'
     Plug 'Raimondi/delimitMate'
 "Searching
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'vim-fuzzbox/fuzzbox.vim'
 "Distraction Free mode
     Plug 'junegunn/goyo.vim'
 "Syntax Highlighting
