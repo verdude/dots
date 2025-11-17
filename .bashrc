@@ -113,25 +113,6 @@ function srbenv() {
   which rbenv &> /dev/null && eval "$(rbenv init -)"
 }
 
-function smojo() {
-  mhome="${HOME}/.modular"
-  if [ -d "$mhome" ]; then
-    export MODULAR_HOME=$mhome
-    export PATH="${PATH}:${mhome}/pkg/packages.modular.com_mojo/bin"
-  fi
-}
-
-function seb() {
-  if [ -n "$VIRTUAL_ENV" ]; then
-    dea
-    echo "去除eb了"
-  fi
-  ph
-  venv
-  pod
-  echo "新增eb了"
-}
-
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
   spyenv
 
