@@ -23,7 +23,7 @@ call plug#begin()
     Plug 'junegunn/goyo.vim'
 "Syntax Highlighting
     "Plug 'derekwyatt/vim-scala'
-    "Plug 'elixir-editors/vim-elixir'
+    Plug 'elixir-editors/vim-elixir'
     "Plug 'JuliaEditorSupport/julia-vim'
     "Plug 'leafOfTree/vim-vue-plugin'
     Plug 'hashivim/vim-terraform'
