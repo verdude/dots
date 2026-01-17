@@ -34,7 +34,7 @@ call plug#begin()
     Plug 'nordtheme/vim'
     Plug 'sainnhe/everforest'
 "Latex
-    "Plug 'gerw/vim-latex-suite'
+    Plug 'lervag/vimtex'
 "Other
     Plug 'jasonccox/vim-wayland-clipboard'
 call plug#end()
@@ -45,8 +45,8 @@ set termguicolors
 set background=dark
 colorscheme everforest
 
-"LaTeXSuite
-let g:Tex_DefaultTargetFormat="pdf"
+"VimTex
+let g:vimtex_view_method = 'mupdf'
 
 let g:mapleader=","
 nnoremap <leader>llf <Plug>IMAP_JumpForward
