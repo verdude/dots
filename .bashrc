@@ -113,11 +113,17 @@ function srbenv() {
   which rbenv &> /dev/null && eval "$(rbenv init -)"
 }
 
+function sbun() {
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+}
+
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
   spyenv
+fi
 
-elif [ -s "Gemfile" ]; then
-  srbenv
+if [ -s "package.json" ]; then
+  snvm
 fi
 
 cargobin=$HOME/.cargo/bin/
@@ -143,6 +149,4 @@ for b in "${fzfbindings[@]}"; do
   fi
 done
 
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
