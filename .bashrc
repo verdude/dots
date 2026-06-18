@@ -76,13 +76,11 @@ export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 if ((__darwin)); then
   export PATH="$PATH:$prefix/opt/qt@5/bin"
+else
+  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 fi
 export PATH="$PATH:$HOME/fvm/default/bin"
 export LS_COLORS='ow=01;36;40'
-
-if ! ((__darwin)); then
-  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
-fi
 
 export HISTFILESIZE=
 export HISTSIZE=
@@ -94,8 +92,8 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 ## VIm
 mkdir -p /tmp/.backup /tmp/.undo
 
-# NVM LMAO! SUPER SLOW!
-function snvm() {
+function nvm() {
+  unset -f nvm
   local nvmdirs
   local dir
 
@@ -107,26 +105,33 @@ function snvm() {
       . "$dir/nvm.sh"
     fi
   done
+  nvm
 }
 
-function spyenv() {
+function pyenv() {
+  unset -f pyenv
   export PYENV_ROOT="$HOME/.pyenv"
 
   if [[ -d $PYENV_ROOT ]]; then
     command -v pyenv > /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
   fi
+  pyenv
 }
 
-function srbenv() {
+function rbenv() {
+  unset -f rbenv
   if which rbenv &> /dev/null; then
     eval "$(rbenv init -)"
   fi
+  rbenv
 }
 
-function sbun() {
+function bun() {
+  unset -f bun
   export BUN_INSTALL="$HOME/.bun"
   export PATH="$BUN_INSTALL/bin:$PATH"
+  bun
 }
 
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
