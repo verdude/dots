@@ -27,7 +27,7 @@ call plug#begin()
     "Plug 'JuliaEditorSupport/julia-vim'
     "Plug 'leafOfTree/vim-vue-plugin'
     Plug 'hashivim/vim-terraform'
-    "Plug 'rust-lang/rust.vim'
+    Plug 'rust-lang/rust.vim'
     Plug 'vito-c/jq.vim'
     Plug 'ziglang/zig.vim'
 "Colors

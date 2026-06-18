@@ -17,29 +17,36 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 if ((__darwin)); then
-  function sbrew() {
-    local brew_bin
-    if [[ -x "/opt/homebrew/bin/brew" ]]; then
-      brew_bin="/opt/homebrew/bin/brew"
-    elif [[ -x "/usr/local/bin/brew" ]]; then
-      brew_bin="/usr/local/bin/brew"
-    else
-      echo "Warning: brew command not found in /opt/homebrew/bin or /usr/local/bin" >&2
-      return 1
-    fi
-    eval "$($brew_bin shellenv)"
-    psqlpath=(/opt/homebrew/opt/postgresql@*/bin/)
-    if [ "${#psqlpath[@]}" -gt 0 ]; then
-      export PATH="$PATH:${psqlpath[0]}"
-    fi
-  }
-  sbrew
-  prefix=$(brew --prefix)
-  brewcompletionsh=$prefix/etc/profile.d/bash_completion.sh
-
-  if [ -r "$brewcompletionsh" ]; then
-    . "$brewcompletionsh"
+  if [[ -d /opt/homebrew ]]; then
+    export HOMEBREW_PREFIX=/opt/homebrew
+  else
+    export HOMEBREW_PREFIX=/usr/local
   fi
+
+  export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
+  export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
+
+  case ":$PATH:" in
+    *":$HOMEBREW_PREFIX/bin:"*) ;;
+    *) export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH" ;;
+  esac
+
+  export MANPATH="$HOMEBREW_PREFIX/share/man:${MANPATH:-}"
+  export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
+
+	_brew_real="$HOMEBREW_PREFIX/bin/brew"
+
+	brew() {
+		unset -f brew
+		brewcompletionsh=$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh
+
+		if [ -r "$brewcompletionsh" ]; then
+			. "$brewcompletionsh"
+		else
+			echo "No completions Found."
+		fi
+		"$_brew_real" "$@"
+	}
 fi
 
 if [[ -s "$HOME/.alt" ]]; then
@@ -75,8 +82,6 @@ export LS_COLORS='ow=01;36;40'
 
 if ! ((__darwin)); then
   export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
-elif [[ -n "$(ps x | grep ssh-agent | grep -vE 'grep|defunct')" ]]; then
-  eval $(keychain --agents ssh --eval id_ed25519 2> /dev/null)
 fi
 
 export HISTFILESIZE=
@@ -87,14 +92,17 @@ export HISTCONTROL="ignorespace:erasedups"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 ## VIm
-mkdir -p /tmp/.backup
-mkdir -p /tmp/.undo
+mkdir -p /tmp/.backup /tmp/.undo
 
 # NVM LMAO! SUPER SLOW!
 function snvm() {
+  local nvmdirs
+  local dir
+
   nvmdirs=("$HOME/.nvm" "$HOMEBREW_PREFIX/opt/nvm")
+
   # breaks with name in home/homebrew path
-  for dir in ${nvmdirs[@]}; do
+  for dir in "${nvmdirs[@]}"; do
     if [ -s "$dir/nvm.sh" ]; then
       . "$dir/nvm.sh"
     fi
@@ -103,6 +111,7 @@ function snvm() {
 
 function spyenv() {
   export PYENV_ROOT="$HOME/.pyenv"
+
   if [[ -d $PYENV_ROOT ]]; then
     command -v pyenv > /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
@@ -110,7 +119,9 @@ function spyenv() {
 }
 
 function srbenv() {
-  which rbenv &> /dev/null && eval "$(rbenv init -)"
+  if which rbenv &> /dev/null; then
+    eval "$(rbenv init -)"
+  fi
 }
 
 function sbun() {
