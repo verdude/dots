@@ -138,10 +138,6 @@ if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
   spyenv
 fi
 
-if [ -s "package.json" ]; then
-  snvm
-fi
-
 cargobin=$HOME/.cargo/bin/
 if [ -d "$cargobin" ]; then
   export PATH="$PATH:${cargobin}"
