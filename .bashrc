@@ -166,3 +166,5 @@ for b in "${fzfbindings[@]}"; do
 done
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
