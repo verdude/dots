@@ -37,6 +37,7 @@ call plug#begin()
     Plug 'lervag/vimtex'
 "Other
     Plug 'jasonccox/vim-wayland-clipboard'
+    Plug 'verdude/choudaima'
 call plug#end()
 
 "Colors
@@ -52,6 +53,8 @@ let g:mapleader=","
 nnoremap <leader>llf <Plug>IMAP_JumpForward
 vnoremap <leader>llf <Plug>IMAP_JumpForward
 inoremap <leader>llf <Plug>IMAP_JumpForward
+nmap <leader>k <Plug>(choudaima-rewrite)
+xmap <leader>k <Plug>(choudaima-rewrite)
 
 "autocmd InsertEnter * set norelativenumber
 "autocmd InsertLeave * set relativenumber

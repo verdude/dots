@@ -17,36 +17,35 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 if ((__darwin)); then
-  if [[ -d /opt/homebrew ]]; then
-    export HOMEBREW_PREFIX=/opt/homebrew
-  else
-    export HOMEBREW_PREFIX=/usr/local
+  __brew=
+  for __brew_candidate in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [[ -x $__brew_candidate ]]; then
+      __brew=$__brew_candidate
+      break
+    fi
+  done
+
+  if [[ -n $__brew ]]; then
+    # Homebrew's shellenv moves its bin/sbin ahead of the system paths so
+    # `bash` resolves to Homebrew's bash when it is installed.
+    eval "$("$__brew" shellenv)"
+
+    _brew_real="$__brew"
+
+    brew() {
+      unset -f brew
+      local brewcompletionsh="$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+
+      if [ -r "$brewcompletionsh" ]; then
+        . "$brewcompletionsh"
+      else
+        echo "No completions Found."
+      fi
+      "$_brew_real" "$@"
+    }
   fi
 
-  export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
-  export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
-
-  case ":$PATH:" in
-    *":$HOMEBREW_PREFIX/bin:"*) ;;
-    *) export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH" ;;
-  esac
-
-  export MANPATH="$HOMEBREW_PREFIX/share/man:${MANPATH:-}"
-  export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
-
-	_brew_real="$HOMEBREW_PREFIX/bin/brew"
-
-	brew() {
-		unset -f brew
-		brewcompletionsh=$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh
-
-		if [ -r "$brewcompletionsh" ]; then
-			. "$brewcompletionsh"
-		else
-			echo "No completions Found."
-		fi
-		"$_brew_real" "$@"
-	}
+  unset __brew __brew_candidate
 fi
 
 if [[ -s "$HOME/.alt" ]]; then
@@ -92,46 +91,24 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 ## VIm
 mkdir -p /tmp/.backup /tmp/.undo
 
-function nvm() {
-  unset -f nvm
-  local nvmdirs
-  local dir
-
-  nvmdirs=("$HOME/.nvm" "$HOMEBREW_PREFIX/opt/nvm")
-
-  # breaks with name in home/homebrew path
-  for dir in "${nvmdirs[@]}"; do
-    if [ -s "$dir/nvm.sh" ]; then
-      . "$dir/nvm.sh"
-    fi
-  done
-  nvm
-}
-
-function pyenv() {
-  unset -f pyenv
+function spyenv() {
   export PYENV_ROOT="$HOME/.pyenv"
 
   if [[ -d $PYENV_ROOT ]]; then
     command -v pyenv > /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
   fi
-  pyenv
 }
 
-function rbenv() {
-  unset -f rbenv
+function srbenv() {
   if which rbenv &> /dev/null; then
     eval "$(rbenv init -)"
   fi
-  rbenv
 }
 
-function bun() {
-  unset -f bun
+function sbun() {
   export BUN_INSTALL="$HOME/.bun"
   export PATH="$BUN_INSTALL/bin:$PATH"
-  bun
 }
 
 if [ -s "pyproject.toml" ] || [ -s "Pipfile" ]; then
