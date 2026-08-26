@@ -76,15 +76,13 @@ export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 if ((__darwin)); then
   export PATH="$PATH:$prefix/opt/qt@5/bin"
 else
-  # Import keychain's cached environment with Bash builtins only. Preserve an
-  # agent forwarded over SSH; login shells create/repair the keychain cache.
+  # ssh-agent linux setup
   if [[ -z ${SSH_CONNECTION:-} || -z ${SSH_AUTH_SOCK:-} ]]; then
     if [[ -r $HOME/.keychain/$HOSTNAME-sh ]]; then
       . "$HOME/.keychain/$HOSTNAME-sh"
     fi
   fi
 
-  # Until keychain has initialized its cache, retain GCR as a local fallback.
   if [[ -z ${SSH_AUTH_SOCK:-} ]]; then
     export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/gcr/ssh"
   fi
