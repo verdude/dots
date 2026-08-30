@@ -50,11 +50,9 @@ colorscheme everforest
 let g:vimtex_view_method = 'mupdf'
 
 let g:mapleader=","
-nnoremap <leader>llf <Plug>IMAP_JumpForward
-vnoremap <leader>llf <Plug>IMAP_JumpForward
-inoremap <leader>llf <Plug>IMAP_JumpForward
-nmap <leader>k <Plug>(choudaima-rewrite)
-xmap <leader>k <Plug>(choudaima-rewrite)
+
+nmap <leader>x <Plug>(choudaima-rewrite)
+xmap <leader>x <Plug>(choudaima-rewrite)
 
 "autocmd InsertEnter * set norelativenumber
 "autocmd InsertLeave * set relativenumber

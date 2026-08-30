@@ -74,18 +74,34 @@ export DOTDIR="$GITDIR/dots"
 export GOPATH="$HOME/.go/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/bin:$HOME/.local/bin:$HOME/.bin"
 if ((__darwin)); then
+  # macOS supplies SSH_AUTH_SOCK through launchd.
   export PATH="$PATH:$prefix/opt/qt@5/bin"
-else
-  # ssh-agent linux setup
-  if [[ -z ${SSH_CONNECTION:-} || -z ${SSH_AUTH_SOCK:-} ]]; then
-    if [[ -r $HOME/.keychain/$HOSTNAME-sh ]]; then
-      . "$HOME/.keychain/$HOSTNAME-sh"
-    fi
+elif [[ $OSTYPE == linux* ]]; then
+  __ssh_runtime_dir=${XDG_RUNTIME_DIR:-/run/user/$UID}
+  declare -i __wsl=0
+  if [[ -n ${WSL_DISTRO_NAME:-} || -n ${WSL_INTEROP:-} ]] ||
+    [[ -r /proc/sys/kernel/osrelease && $(</proc/sys/kernel/osrelease) == *[Mm]icrosoft* ]]; then
+    __wsl=1
   fi
 
-  if [[ -z ${SSH_AUTH_SOCK:-} ]]; then
-    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/gcr/ssh"
+  if [[ -n ${SSH_CONNECTION:-} && -n ${SSH_AUTH_SOCK:-} ]]; then
+    # remotely accessing shell with forwarded agent
+    :
+  elif ((__wsl)) && [[ -S $__ssh_runtime_dir/ssh-agent.socket ]]; then
+    # wsl -> use systemd ssh-agent
+    export SSH_AUTH_SOCK="$__ssh_runtime_dir/ssh-agent.socket"
+  elif [[ -S $__ssh_runtime_dir/gcr/ssh ]]; then
+    # other linux with gnome keyring
+    export SSH_AUTH_SOCK="$__ssh_runtime_dir/gcr/ssh"
+  elif [[ -n ${SSH_AUTH_SOCK:-} && -S $SSH_AUTH_SOCK ]]; then
+    # inexplicable socket already set
+    :
+  elif [[ -r $HOME/.keychain/$HOSTNAME-sh ]]; then
+    # keychain configured
+    . "$HOME/.keychain/$HOSTNAME-sh"
   fi
+
+  unset __ssh_runtime_dir __wsl
 fi
 export PATH="$PATH:$HOME/fvm/default/bin"
 export LS_COLORS='ow=01;36;40'
