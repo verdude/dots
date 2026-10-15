@@ -95,29 +95,6 @@ function aur-update() {
   popd
 }
 
-function byepant() {
-  rm -rf ~/.cache/pants &
-  rm -rf ~/.cache/pex_root &
-  rm -rf ~/.pex/venvs &
-  rm -rf ~/.cache/nce &
-  d=(~/.pex/*)
-  for d in "${d[@]}"; do
-    if [[ $d != venvs ]]; then
-      rm -rf "${d}" &
-    fi
-  done
-  rm -rf .pants.d &
-  echo "Please."
-  wait
-  pkill pantsd
-}
-
-function unlock-keyring () {
-    read -rsp "Password: " pass
-    export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock)
-    unset pass
-}
-
 function i-aws() {
   aws --profile ${1:-personal} --output json ec2 describe-instances \
     | jq '.Reservations|map(.Instances)|map(map({"state":.State.Name,"id":.InstanceId}))'
@@ -126,11 +103,7 @@ function i-aws() {
 alias ssha='ssh -A gurub'
 alias sshe='ssh -A guru'
 alias rtun='ssh -fNT -R 44442:localhost:22 api'
-
-# arch
-alias startxkde='echo exec startplasma-x11 > ~/.xinitrc && startx'
-alias startxi3='echo exec i3 > ~/.xinitrc && startx'
-alias startxawe='echo exec awesome > ~/.xinitrc && startx'
+alias sa='ssh-add'
 
 # python
 function venv() {
