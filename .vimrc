@@ -175,19 +175,26 @@ endfunction
 
 function! FindInFiles(sensitive)
   let file_extension = expand('%:e')
+  " Search C/C++ sources, headers, and inline/template files together.
+  let extensions = ['c', 'h', 'cc', 'hh', 'cpp', 'hpp', 'cxx', 'hxx',
+        \ 'c++', 'h++', 'C', 'H', 'inl', 'ipp', 'tpp']
+  if index(extensions, file_extension) < 0
+    let extensions = [file_extension]
+  endif
+  let file_patterns = join(map(extensions, '"**/*." . v:val'), ' ')
   let current_word = expand('<cword>')
-  let cmd = 'vim "\<' . current_word . '\>" **/*.' . file_extension
+  let cmd = 'vim "\<' . current_word . '\>" ' . file_patterns
 
   let case = &ignorecase
   if a:sensitive && case
     set noignorecase
   endif
 
-  execute cmd
-
-  if case
-    set ignorecase
-  endif
+  try
+    execute cmd
+  finally
+    let &ignorecase = case
+  endtry
 endfunction
 
 command Cleanspacing :call DelTrailing() <bar> :call TabToSpace()
