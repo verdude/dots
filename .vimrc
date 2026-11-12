@@ -57,7 +57,7 @@ xmap <leader>x <Plug>(choudaima-rewrite)
 "autocmd InsertEnter * set norelativenumber
 "autocmd InsertLeave * set relativenumber
 
-set wildignore+=dist/**,build/**
+set wildignore+=dist/**,build/**,node_modules/**
 set nofoldenable
 set relativenumber
 set number
